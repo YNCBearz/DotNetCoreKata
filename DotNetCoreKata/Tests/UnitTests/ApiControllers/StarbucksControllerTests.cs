@@ -20,7 +20,7 @@ public class StarbucksControllerTests
     }
 
     [Test]
-    public void Menus()
+    public void menus()
     {
         _response = _starbucksController.GetMenu();
 
@@ -32,37 +32,38 @@ public class StarbucksControllerTests
                 "Mocha",
                 "White",
             ],
-            Tea = [
+            Tea =
+            [
                 "Black Tea",
                 "Earl Grey Tea",
                 "Oolong Tea",
             ]
         });
     }
-    
+
     [Test]
-    public void Coffee_Menus()
+    public void coffee_menus()
     {
         _response = _starbucksController.GetMenuByCategory(MenuCategory.Coffee);
 
         ResponseShouldBe(new List<string>()
         {
-                "Latte",
-                "Mocha",
-                "White",
+            "Latte",
+            "Mocha",
+            "White",
         });
     }
-    
+
     [Test]
-    public void Tea_Menus()
+    public void tea_menus()
     {
         _response = _starbucksController.GetMenuByCategory(MenuCategory.Tea);
 
         ResponseShouldBe(new List<string>()
         {
-                "Black Tea",
-                "Earl Grey Tea",
-                "Oolong Tea",
+            "Black Tea",
+            "Earl Grey Tea",
+            "Oolong Tea",
         });
     }
 

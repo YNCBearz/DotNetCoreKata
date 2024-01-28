@@ -1,4 +1,5 @@
-﻿using DotNetCoreKata.DomainModels.Starbucks;
+﻿using DotNetCoreKata.Attributes;
+using DotNetCoreKata.DomainModels.Starbucks;
 using DotNetCoreKata.Enums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,7 @@ public class StarbucksController: ControllerBase
     }
 
     [HttpGet("menus/{category}")]
+    [ValidateMenuCategory]
     public IActionResult? GetMenuByCategory(MenuCategory category)
     {
         var data = MenuFactory.GenerateMenuByCategory(category);

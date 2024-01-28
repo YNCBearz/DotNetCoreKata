@@ -30,7 +30,7 @@ public class ValidateMenuCategoryAttributeTests
                 httpContext: _httpContext,
                 routeData: new RouteData(new RouteValueDictionary()
                 {
-                    {"category", notExistCategory}     
+                    {"category", notExistCategory}
                 }),
                 actionDescriptor: new ControllerActionDescriptor(),
                 modelState: new ModelStateDictionary()
@@ -41,7 +41,7 @@ public class ValidateMenuCategoryAttributeTests
 
         Assert.That(async () => await _validateMenuCategoryAttribute.OnActionExecutionAsync(context, Next),
             Throws.TypeOf<FormatException>()
-                .With.Message.EqualTo("category not exists"));
+                .With.Message.EqualTo("category does not exist."));
     }
 
     private Task<ActionExecutedContext> Next()

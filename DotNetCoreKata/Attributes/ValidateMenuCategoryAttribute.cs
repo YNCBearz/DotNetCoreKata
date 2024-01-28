@@ -11,7 +11,7 @@ public class ValidateMenuCategoryAttribute : ActionFilterAttribute
 
         if (!Enum.TryParse<MenuCategory>((string?) category, out var menuCategory))
         {
-            throw new FormatException("category not exists");
+            throw new FormatException("category does not exist.");
         }
 
         await next();

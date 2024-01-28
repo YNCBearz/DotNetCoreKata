@@ -1,3 +1,5 @@
+using DotNetCoreKata.Tests.UnitTests.Attributes;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -33,6 +35,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionHandler>();
 
 app.MapControllerRoute(
     name: "default",

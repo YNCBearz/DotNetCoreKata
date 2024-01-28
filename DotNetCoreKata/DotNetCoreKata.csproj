@@ -17,6 +17,7 @@
       <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.3" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
       <PackageReference Include="NSubstitute" Version="5.1.0" />
+      <PackageReference Include="NSwag.AspNetCore" Version="14.0.2" />
       <PackageReference Include="NUnit" Version="4.0.1" />
     </ItemGroup>
 

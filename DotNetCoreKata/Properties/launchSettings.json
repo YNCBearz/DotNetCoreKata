@@ -27,6 +27,16 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "swagger": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5037/swagger",
+      "applicationUrl": "http://localhost:5037",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,

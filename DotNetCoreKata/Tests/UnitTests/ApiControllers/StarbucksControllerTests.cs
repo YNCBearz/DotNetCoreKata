@@ -25,11 +25,16 @@ public class StarbucksControllerTests
 
         ResponseShouldBe(new Menu()
         {
-            Drinks =
+            Coffee =
             [
                 "Latte",
                 "Mocha",
                 "White",
+            ],
+            Tea = [
+                "Black Tea",
+                "Earl Grey Tea",
+                "Oolong Tea",
             ]
         });
     }

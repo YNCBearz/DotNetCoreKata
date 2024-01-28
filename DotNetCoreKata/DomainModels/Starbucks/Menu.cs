@@ -2,5 +2,6 @@
 
 public class Menu
 {
-    public List<string> Drinks { get; set; }
+    public List<string> Coffee { get; set; }
+    public List<string> Tea { get; set; }
 }

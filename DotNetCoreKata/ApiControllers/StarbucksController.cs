@@ -11,11 +11,17 @@ public class StarbucksController: ControllerBase
     {
         return ApiResponse.SuccessWithData(new Menu()
         {
-            Drinks =
+            Coffee =
             [
                 "Latte",
                 "Mocha",
                 "White"
+            ],
+            Tea =
+            [
+                "Black Tea",
+                "Earl Grey Tea",
+                "Oolong Tea",
             ]
         });
     }

@@ -1,4 +1,5 @@
 ﻿using DotNetCoreKata.DomainModels.Starbucks;
+using DotNetCoreKata.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCoreKata.ApiControllers;
@@ -29,19 +30,23 @@ public class StarbucksController: ControllerBase
     [HttpGet("menus/{category}")]
     public IActionResult? GetMenuByCategory(MenuCategory category)
     {
+        if (category == MenuCategory.Coffee)
+        {
+            return ApiResponse.SuccessWithData(
+                new List<string>
+                {
+                    "Latte",
+                    "Mocha",
+                    "White",
+                });
+        }
+
         return ApiResponse.SuccessWithData(
             new List<string>
             {
-                "Latte",
-                "Mocha",
-                "White",
+                "Black Tea",
+                "Earl Grey Tea",
+                "Oolong Tea",
             });
     }
-}
-
-public enum MenuCategory
-{
-    Unknown = 0,
-    Coffee = 1,
-    Tea = 2
 }

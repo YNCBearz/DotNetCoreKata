@@ -1,5 +1,6 @@
 ﻿using DotNetCoreKata.ApiControllers;
 using DotNetCoreKata.DomainModels.Starbucks;
+using DotNetCoreKata.Enums;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
@@ -49,6 +50,19 @@ public class StarbucksControllerTests
                 "Latte",
                 "Mocha",
                 "White",
+        });
+    }
+    
+    [Test]
+    public void Tea_Menus()
+    {
+        _response = _starbucksController.GetMenuByCategory(MenuCategory.Tea);
+
+        ResponseShouldBe(new List<string>()
+        {
+                "Black Tea",
+                "Earl Grey Tea",
+                "Oolong Tea",
         });
     }
 

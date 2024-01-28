@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotNetCoreKata.DomainModels.Starbucks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCoreKata.ApiControllers;
 
+[Route("api/starbucks")]
 public class StarbucksController: ControllerBase
 {
-    [HttpGet("/aaa")]
-    public IActionResult GetMenu()
+    [HttpGet("menus")]
+    public IActionResult? GetMenu()
     {
-        return Ok();
+        return ApiResponse.SuccessWithData(new Menu()
+        {
+            Drinks =
+            [
+                "Latte",
+                "Mocha",
+                "White"
+            ]
+        });
     }
 }

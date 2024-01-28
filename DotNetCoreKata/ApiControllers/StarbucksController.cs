@@ -10,7 +10,7 @@ public class StarbucksController: ControllerBase
     [HttpGet("menus")]
     public IActionResult? GetMenu()
     {
-        return ApiResponse.SuccessWithData(new Menu()
+        return ApiResponse.SuccessWithData(new Menu
         {
             Coffee =
             [
@@ -30,23 +30,9 @@ public class StarbucksController: ControllerBase
     [HttpGet("menus/{category}")]
     public IActionResult? GetMenuByCategory(MenuCategory category)
     {
-        if (category == MenuCategory.Coffee)
-        {
-            return ApiResponse.SuccessWithData(
-                new List<string>
-                {
-                    "Latte",
-                    "Mocha",
-                    "White",
-                });
-        }
+        var data = MenuFactory.GenerateMenuByCategory(category);
 
         return ApiResponse.SuccessWithData(
-            new List<string>
-            {
-                "Black Tea",
-                "Earl Grey Tea",
-                "Oolong Tea",
-            });
+            data);
     }
 }

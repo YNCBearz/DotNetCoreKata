@@ -38,15 +38,28 @@ public class StarbucksControllerTests
             ]
         });
     }
+    
+    [Test]
+    public void Coffee_Menus()
+    {
+        _response = _starbucksController.GetMenuByCategory(MenuCategory.Coffee);
 
-    private void ResponseShouldBe(Menu menu)
+        ResponseShouldBe(new List<string>()
+        {
+                "Latte",
+                "Mocha",
+                "White",
+        });
+    }
+
+    private void ResponseShouldBe(object data)
     {
         var result = _response.As<OkObjectResult>();
         result.StatusCode.Should().Be(200);
 
         result.Value.Should().BeEquivalentTo(new
         {
-            Data = menu
+            Data = data
         });
     }
 }

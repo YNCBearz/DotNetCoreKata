@@ -25,4 +25,23 @@ public class StarbucksController: ControllerBase
             ]
         });
     }
+
+    [HttpGet("menus/{category}")]
+    public IActionResult? GetMenuByCategory(MenuCategory category)
+    {
+        return ApiResponse.SuccessWithData(
+            new List<string>
+            {
+                "Latte",
+                "Mocha",
+                "White",
+            });
+    }
+}
+
+public enum MenuCategory
+{
+    Unknown = 0,
+    Coffee = 1,
+    Tea = 2
 }

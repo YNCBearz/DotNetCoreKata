@@ -1,4 +1,4 @@
-﻿namespace DotNetCoreKata.DomainModels.TrafficLight;
+﻿namespace DotNetCoreKata.Exercises.TrafficLight;
 
 public class Car
 {

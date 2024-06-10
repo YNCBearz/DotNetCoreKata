@@ -1,4 +1,6 @@
-﻿namespace DotNetCoreKata.Services.TrafficLight;
+﻿using DotNetCoreKata.DomainModels.TrafficLight;
+
+namespace DotNetCoreKata.Services.TrafficLight;
 
 public static class TrafficLightSystem
 {
@@ -6,15 +8,15 @@ public static class TrafficLightSystem
     {
         if (trafficLight.Color() == "Red")
         {
-            return new Services.TrafficLight.TrafficLight("Green");
+            return new DomainModels.TrafficLight.TrafficLight("Green");
         }
         else if (trafficLight.Color() == "Green")
         {
-            return new Services.TrafficLight.TrafficLight("Yellow");
+            return new DomainModels.TrafficLight.TrafficLight("Yellow");
         }
         else if (trafficLight.Color() == "Yellow")
         {
-            return new Services.TrafficLight.TrafficLight("Red");
+            return new DomainModels.TrafficLight.TrafficLight("Red");
         }
 
         return trafficLight;

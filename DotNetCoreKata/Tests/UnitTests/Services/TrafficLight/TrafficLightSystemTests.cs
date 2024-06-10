@@ -1,4 +1,5 @@
-﻿using DotNetCoreKata.Services.TrafficLight;
+﻿using DotNetCoreKata.DomainModels.TrafficLight;
+using DotNetCoreKata.Services.TrafficLight;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -19,7 +20,7 @@ public class TrafficLightSystemTests
     [Test]
     public void Green()
     {
-        var nextTrafficLight = TrafficLightSystem.NextColor(new DotNetCoreKata.Services.TrafficLight.TrafficLight("Red"));
+        var nextTrafficLight = TrafficLightSystem.NextColor(new DomainModels.TrafficLight.TrafficLight("Red"));
         CarShould(nextTrafficLight, "Drive");
     }
 
@@ -32,14 +33,14 @@ public class TrafficLightSystemTests
     [Test]
     public void Yellow()
     {
-        var nextTrafficLight = TrafficLightSystem.NextColor(new DotNetCoreKata.Services.TrafficLight.TrafficLight("Green"));
+        var nextTrafficLight = TrafficLightSystem.NextColor(new DomainModels.TrafficLight.TrafficLight("Green"));
         CarShould(nextTrafficLight, "Stop");
     }
 
     [Test]
     public void Red()
     {
-        var nextTrafficLight = TrafficLightSystem.NextColor(new DotNetCoreKata.Services.TrafficLight.TrafficLight("Yellow"));
+        var nextTrafficLight = TrafficLightSystem.NextColor(new DomainModels.TrafficLight.TrafficLight("Yellow"));
         CarShould(nextTrafficLight, "Stop");
     }
 

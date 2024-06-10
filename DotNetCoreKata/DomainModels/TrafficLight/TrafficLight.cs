@@ -1,4 +1,6 @@
-﻿namespace DotNetCoreKata.Services.TrafficLight;
+﻿using DotNetCoreKata.Services.TrafficLight;
+
+namespace DotNetCoreKata.DomainModels.TrafficLight;
 
 public class TrafficLight(string color) : ITrafficLight
 {
@@ -11,15 +13,15 @@ public class TrafficLight(string color) : ITrafficLight
     {
         if (Color() == "Green")
         {
-            car.Drive();
+            Car.Drive();
         }
         else if (Color() == "Red")
         {
-            car.Stop();
+            Car.Stop();
         }
         else if (Color() == "Yellow")
         {
-            car.Stop();
+            Car.Stop();
         }
     }
 }

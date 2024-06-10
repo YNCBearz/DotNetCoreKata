@@ -1,4 +1,4 @@
-﻿namespace DotNetCoreKata.Services.TrafficLight;
+﻿namespace DotNetCoreKata.DomainModels.TrafficLight;
 
 public interface ITrafficLight
 {

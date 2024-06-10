@@ -1,4 +1,4 @@
-﻿namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
+﻿namespace DotNetCoreKata.DomainModels.AgeOfEmpires.Weapon;
 
 public class Stick : IWeapon
 {

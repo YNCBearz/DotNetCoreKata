@@ -1,4 +1,7 @@
-﻿namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
+﻿using DotNetCoreKata.DomainModels.AgeOfEmpires.Transportation;
+using DotNetCoreKata.DomainModels.AgeOfEmpires.Weapon;
+
+namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
 
 public class Unit(IWeapon weapon, ITransportation transportation) : IUnit
 {

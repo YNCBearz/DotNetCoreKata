@@ -1,4 +1,5 @@
-﻿using DotNetCoreKata.DomainModels.AgeOfEmpires;
+﻿using DotNetCoreKata.DomainModels;
+using DotNetCoreKata.DomainModels.AgeOfEmpires;
 using DotNetCoreKata.Enums;
 
 namespace DotNetCoreKata.Services.AgeOfEmpires;
@@ -7,16 +8,14 @@ public class Program
 {
     public IUnit Train(UnitCategory unitCategory)
     {
-        var militia = new Unit(new Stick(), new Legs());
-        var archer = new Unit(new Bow(), new Legs());
-        var knight = new Unit(new Sword(), new Horse());
-
-        return unitCategory switch
+        IEquipment equipmentFactory = unitCategory switch
         {
-            UnitCategory.Military => militia,
-            UnitCategory.Archer => archer,
-            UnitCategory.Knight => knight,
-            _ => militia
+            UnitCategory.Military => new MilitiaEquipmentFactory(),
+            UnitCategory.Archer => new ArcherEquipmentFactory(),
+            UnitCategory.Knight => new KnightEquipmentFactory(),
+            _ => new MilitiaEquipmentFactory()
         };
+
+        return new Unit(equipmentFactory.CreateWeapon(), equipmentFactory.CreateTransportation());
     }
 }

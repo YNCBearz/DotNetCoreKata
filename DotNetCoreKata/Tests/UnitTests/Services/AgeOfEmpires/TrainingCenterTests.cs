@@ -14,12 +14,14 @@ public class TrainingCenterTests
     [SetUp]
     public void SetUp()
     {
-        _trainingCenter = GivenTrainingCenter();
+        GivenTrainingCenter();
     }
 
     [Test]
     public void Militia()
     {
+        GivenTrainingCenter();
+
         var unit = _trainingCenter.Train(UnitCategory.Military);
 
         unit.Should().BeOfType<Unit>();
@@ -37,9 +39,9 @@ public class TrainingCenterTests
         unit.Move().Should().Be("moves using legs");
     }
 
-    private static TrainingCenter GivenTrainingCenter()
+    private void GivenTrainingCenter()
     {
         var trainingCenter = new TrainingCenter();
-        return trainingCenter;
+        _trainingCenter = trainingCenter;
     }
 }

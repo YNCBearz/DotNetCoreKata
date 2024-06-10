@@ -24,11 +24,3 @@ public class TrainingCenter
         return new Unit(weapon, transportation);
     }
 }
-
-public class Bow : IWeapon
-{
-    public string Name()
-    {
-        return "bow";
-    }
-}

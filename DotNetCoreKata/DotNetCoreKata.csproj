@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Exercises\LeetCode\" />
       <Folder Include="Middlewares\" />
     </ItemGroup>
 

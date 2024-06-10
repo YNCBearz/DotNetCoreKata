@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 
-namespace DotNetCoreKata.Tests.UnitTests.Exercises.Interview;
+namespace DotNetCoreKata.Tests.UnitTests.Services.Interview;
 
 public class QuestionTests
 {

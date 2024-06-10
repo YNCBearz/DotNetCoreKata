@@ -7,22 +7,20 @@ using NUnit.Framework;
 namespace DotNetCoreKata.Tests.UnitTests.Services.AgeOfEmpires;
 
 [TestFixture]
-public class TrainingCenterTests
+public class ProgramTests
 {
-    private TrainingCenter _trainingCenter;
+    private DotNetCoreKata.Services.AgeOfEmpires.Program _program;
 
     [SetUp]
     public void SetUp()
     {
-        GivenTrainingCenter();
+        GivenProgram();
     }
 
     [Test]
     public void Militia()
     {
-        GivenTrainingCenter();
-
-        var unit = _trainingCenter.Train(UnitCategory.Military);
+        var unit = _program.Train(UnitCategory.Military);
 
         unit.Should().BeOfType<Unit>();
         unit.Attack().Should().Be("attacks with stick");
@@ -32,16 +30,16 @@ public class TrainingCenterTests
     [Test]
     public void Archer()
     {
-        var unit = _trainingCenter.Train(UnitCategory.Archer);
+        var unit = _program.Train(UnitCategory.Archer);
 
         unit.Should().BeOfType<Unit>();
         unit.Attack().Should().Be("attacks with bow");
         unit.Move().Should().Be("moves using legs");
     }
 
-    private void GivenTrainingCenter()
+    private void GivenProgram()
     {
-        var trainingCenter = new TrainingCenter();
-        _trainingCenter = trainingCenter;
+        var trainingCenter = new DotNetCoreKata.Services.AgeOfEmpires.Program();
+        _program = trainingCenter;
     }
 }

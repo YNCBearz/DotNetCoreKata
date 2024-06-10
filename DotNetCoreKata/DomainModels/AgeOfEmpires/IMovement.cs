@@ -1,6 +1,6 @@
 ﻿namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
 
-public interface ITransportation
+public interface IMovement
 {
     string Name();
 }

@@ -1,8 +1,6 @@
-﻿using DotNetCoreKata.Tests.UnitTests.Services.AgeOfEmpires;
+﻿namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
 
-namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
-
-public class Legs : ITransportation
+public class Legs : IMovement
 {
     public string Name()
     {

@@ -7,12 +7,16 @@ public class Program
 {
     public IUnit Train(UnitCategory unitCategory)
     {
+        var militia = new Unit(new Stick(), new Legs());
+        var archer = new Unit(new Bow(), new Legs());
+        var knight = new Unit(new Sword(), new Horse());
+
         return unitCategory switch
         {
-            UnitCategory.Military => Barracks.Create(),
-            UnitCategory.Archer => ArcheryRange.Create(),
-            UnitCategory.Knight => Stable.Create(),
-            _ => Barracks.Create()
+            UnitCategory.Military => militia,
+            UnitCategory.Archer => archer,
+            UnitCategory.Knight => knight,
+            _ => militia
         };
     }
 }

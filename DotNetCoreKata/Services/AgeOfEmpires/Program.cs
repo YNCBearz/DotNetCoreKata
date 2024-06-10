@@ -7,20 +7,16 @@ public class Program
 {
     public IUnit Train(UnitCategory unitCategory)
     {
-        IWeapon? weapon;
-        IMovement? movement;
+        var militia = new Unit(new Stick(), new Legs());
+        var archer = new Unit(new Bow(), new Legs());
+        var knight = new Unit(new Sword(), new Horse());
 
-        if (unitCategory == UnitCategory.Military)
+        return unitCategory switch
         {
-            weapon = new Stick();
-            movement = new Legs();
-        }
-        else
-        {
-            weapon = new Bow();
-            movement = new Legs();
-        }
-
-        return new Unit(weapon, movement);
+            UnitCategory.Military => militia,
+            UnitCategory.Archer => archer,
+            UnitCategory.Knight => knight,
+            _ => militia
+        };
     }
 }

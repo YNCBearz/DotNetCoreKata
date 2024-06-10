@@ -20,8 +20,13 @@ public class ProgramTests
     [Test]
     public void Militia()
     {
-        var unit = _program.Train(UnitCategory.Military);
+        // Arrange
+        const UnitCategory unitCategory = UnitCategory.Military;
 
+        // Act
+        var unit = _program.Train(unitCategory);
+
+        // Assert
         unit.Should().BeOfType<Unit>();
         unit.Attack().Should().Be("attacks with stick");
         unit.Move().Should().Be("moves using legs");
@@ -30,16 +35,35 @@ public class ProgramTests
     [Test]
     public void Archer()
     {
-        var unit = _program.Train(UnitCategory.Archer);
+        // Arrange
+        const UnitCategory unitCategory = UnitCategory.Archer;
 
+        // Act
+        var unit = _program.Train(unitCategory);
+
+        // Assert
         unit.Should().BeOfType<Unit>();
         unit.Attack().Should().Be("attacks with bow");
         unit.Move().Should().Be("moves using legs");
     }
 
+    [Test]
+    public void Knight()
+    {
+        // Arrange
+        const UnitCategory unitCategory = UnitCategory.Knight;
+
+        // Act
+        var unit = _program.Train(unitCategory);
+
+        // Assert
+        unit.Should().BeOfType<Unit>();
+        unit.Attack().Should().Be("attacks with sword");
+        unit.Move().Should().Be("moves using horse");
+    }
+
     private void GivenProgram()
     {
-        var trainingCenter = new DotNetCoreKata.Services.AgeOfEmpires.Program();
-        _program = trainingCenter;
+        _program = new DotNetCoreKata.Services.AgeOfEmpires.Program();
     }
 }

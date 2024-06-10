@@ -2,7 +2,7 @@
 
 namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
 
-public class Unit(IWeapon weapon, IMovement movement) : IUnit
+public class Unit(IWeapon weapon, ITransportation transportation) : IUnit
 {
     public string Attack()
     {
@@ -11,6 +11,6 @@ public class Unit(IWeapon weapon, IMovement movement) : IUnit
     
     public string Move()
     {
-        return $"moves using {movement.Name()}";
+        return $"moves using {transportation.Mode()}";
     }
 }

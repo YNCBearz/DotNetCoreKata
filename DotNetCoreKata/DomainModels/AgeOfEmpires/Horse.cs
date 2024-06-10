@@ -1,9 +1,9 @@
 ﻿namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
 
-public class Legs : ITransportation
+public class Horse : ITransportation
 {
     public string Mode()
     {
-        return "legs";
+        return "horse";
     }
 }

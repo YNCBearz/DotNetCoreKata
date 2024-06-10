@@ -1,6 +1,5 @@
 ﻿using DotNetCoreKata.DomainModels.AgeOfEmpires;
 using DotNetCoreKata.Enums;
-using DotNetCoreKata.Services.AgeOfEmpires;
 using FluentAssertions;
 using NUnit.Framework;
 

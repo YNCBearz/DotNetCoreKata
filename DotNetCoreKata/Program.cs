@@ -7,12 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure Serilog
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-    .Enrich.FromLogContext()
     .WriteTo.File(
         "C:/log/DotNetCoreKata/log.log",
         rollingInterval: RollingInterval.Day,
-        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message:lj}{NewLine}{Exception}",
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message:lj}{NewLine}{Exception}",
         restrictedToMinimumLevel: LogEventLevel.Information
     )
     .CreateLogger();

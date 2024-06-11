@@ -4,7 +4,7 @@ using DotNetCoreKata.Enums;
 
 namespace DotNetCoreKata.Services.AgeOfEmpires;
 
-public class Program
+public class Client
 {
     public IUnit Train(UnitCategory unitCategory)
     {

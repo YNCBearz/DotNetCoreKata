@@ -34,7 +34,6 @@ public class StarbucksController: ControllerBase
     {
         var data = MenuFactory.GenerateMenuByCategory(category);
 
-        return ApiResponse.SuccessWithData(
-            data);
+        return ApiResponse.SuccessWithData(data);
     }
 }

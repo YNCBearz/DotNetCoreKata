@@ -6,14 +6,14 @@ using NUnit.Framework;
 namespace DotNetCoreKata.Tests.UnitTests.Services.AgeOfEmpires;
 
 [TestFixture]
-public class ProgramTests
+public class ClientTests
 {
-    private DotNetCoreKata.Services.AgeOfEmpires.Program _program;
+    private DotNetCoreKata.Services.AgeOfEmpires.Client _client;
 
     [SetUp]
     public void SetUp()
     {
-        GivenProgram();
+        GivenClient();
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class ProgramTests
         const UnitCategory unitCategory = UnitCategory.Military;
 
         // Act
-        var unit = _program.Train(unitCategory);
+        var unit = _client.Train(unitCategory);
 
         // Assert
         unit.Should().BeOfType<Unit>();
@@ -38,7 +38,7 @@ public class ProgramTests
         const UnitCategory unitCategory = UnitCategory.Archer;
 
         // Act
-        var unit = _program.Train(unitCategory);
+        var unit = _client.Train(unitCategory);
 
         // Assert
         unit.Should().BeOfType<Unit>();
@@ -53,7 +53,7 @@ public class ProgramTests
         const UnitCategory unitCategory = UnitCategory.Knight;
 
         // Act
-        var unit = _program.Train(unitCategory);
+        var unit = _client.Train(unitCategory);
 
         // Assert
         unit.Should().BeOfType<Unit>();
@@ -61,8 +61,8 @@ public class ProgramTests
         unit.Move().Should().Be("moves using horse");
     }
 
-    private void GivenProgram()
+    private void GivenClient()
     {
-        _program = new DotNetCoreKata.Services.AgeOfEmpires.Program();
+        _client = new DotNetCoreKata.Services.AgeOfEmpires.Client();
     }
 }

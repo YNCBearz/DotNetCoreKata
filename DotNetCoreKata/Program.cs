@@ -1,3 +1,4 @@
+using DotNetCoreKata.Services.AgeOfEmpires;
 using DotNetCoreKata.Tests.UnitTests.Attributes;
 using Serilog;
 using Serilog.Events;
@@ -23,6 +24,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApiDocument();
+
+// Dependency Injection
+builder.Services.AddTransient<IClient, Client>();
 
 var app = builder.Build();
 

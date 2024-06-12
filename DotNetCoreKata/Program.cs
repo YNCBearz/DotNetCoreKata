@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.File(
-        "C:/log/DotNetCoreKata/log.log",
+        "C:/log/DotNetCoreKata/log-.log",
         rollingInterval: RollingInterval.Day,
-        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message:lj}{NewLine}{Exception}",
+        outputTemplate: " [{Level}] {Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Message:lj}{NewLine}{Exception}",
         restrictedToMinimumLevel: LogEventLevel.Information
     )
     .CreateLogger();

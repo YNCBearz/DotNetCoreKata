@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using NSubstitute;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 
 namespace DotNetCoreKata.Tests.UnitTests.Attributes;
 
@@ -47,6 +46,7 @@ public class ValidateEnumAttributeTests
     }
 
     [TestCase("Coffee")]
+    [TestCase("coffee")]
     public async Task in_menu_category(object? category)
     {
         var context = new ActionExecutingContext(
@@ -64,7 +64,7 @@ public class ValidateEnumAttributeTests
             Substitute.For<Controller>());
 
         await _validateEnumAttribute.OnActionExecutionAsync(context, Next);
-        
+
         Assert.That(context.Result, Is.Null);
     }
 
@@ -81,5 +81,4 @@ public class ValidateEnumAttributeTests
             Substitute.For<Controller>()
         ));
     }
-
 }

@@ -2,6 +2,7 @@
 
 namespace DotNetCoreKata.Attributes;
 
+[Obsolete("The framework will convert a string to an enum when you use an enum type.", false)]
 public class ValidateEnumAttribute<TEnum>(string routeKeyName) : ActionFilterAttribute where TEnum : struct, Enum
 {
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)

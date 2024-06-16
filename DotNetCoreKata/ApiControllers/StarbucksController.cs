@@ -29,7 +29,6 @@ public class StarbucksController: ControllerBase
     }
 
     [HttpGet("menus/{category}")]
-    [ValidateEnum<MenuCategory>("category")]
     public IActionResult? GetMenuByCategory(MenuCategory category)
     {
         var data = MenuFactory.GenerateMenuByCategory(category);

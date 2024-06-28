@@ -8,6 +8,8 @@ public class Client : IClient
 {
     public IUnit Train(UnitCategory unitCategory)
     {
+        Console.Write($"Ask resources to build unit: {unitCategory}.");
+
         IEquipment equipmentFactory = unitCategory switch
         {
             UnitCategory.Military => new MilitiaEquipmentFactory(),

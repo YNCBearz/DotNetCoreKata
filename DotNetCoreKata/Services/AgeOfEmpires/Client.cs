@@ -12,10 +12,10 @@ public class Client : IClient
 
         IEquipmentFactory equipmentFactoryFactory = unitCategory switch
         {
-            UnitCategory.Military => new MilitiaEquipmentFactoryFactory(),
-            UnitCategory.Archer => new ArcherEquipmentFactoryFactory(),
-            UnitCategory.Knight => new KnightEquipmentFactoryFactory(),
-            _ => new MilitiaEquipmentFactoryFactory()
+            UnitCategory.Military => new MilitiaEquipmentFactory(),
+            UnitCategory.Archer => new ArcherEquipmentFactory(),
+            UnitCategory.Knight => new KnightEquipmentFactory(),
+            _ => new MilitiaEquipmentFactory()
         };
 
         return new Unit(equipmentFactoryFactory.CreateWeapon(), equipmentFactoryFactory.CreateTransportation());

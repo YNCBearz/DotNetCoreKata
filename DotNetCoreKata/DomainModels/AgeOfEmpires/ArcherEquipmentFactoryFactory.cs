@@ -3,15 +3,14 @@ using DotNetCoreKata.DomainModels.AgeOfEmpires.Weapon;
 
 namespace DotNetCoreKata.DomainModels.AgeOfEmpires;
 
-public class KnightEquipmentFactory : IEquipment
+public class ArcherEquipmentFactoryFactory: IEquipmentFactory
 {
-    public ITransportation CreateTransportation()
-    {
-        return new Horse();
-    }
-
     public IWeapon CreateWeapon()
     {
-        return new Sword();
+        return new Bow();  
+    } 
+    public ITransportation CreateTransportation() 
+    {
+        return new Legs();
     }
 }

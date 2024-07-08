@@ -3,7 +3,7 @@ using DotNetCoreKata.DomainModels.AgeOfEmpires.Weapon;
 
 namespace DotNetCoreKata.DomainModels;
 
-public interface IEquipment
+public interface IEquipmentFactory
 {
     IWeapon CreateWeapon();
     ITransportation CreateTransportation();

@@ -10,14 +10,14 @@ public class Client : IClient
     {
         Console.Write($"Ask resources to build unit: {unitCategory}.");
 
-        IEquipment equipmentFactory = unitCategory switch
+        IEquipmentFactory equipmentFactoryFactory = unitCategory switch
         {
-            UnitCategory.Military => new MilitiaEquipmentFactory(),
-            UnitCategory.Archer => new ArcherEquipmentFactory(),
-            UnitCategory.Knight => new KnightEquipmentFactory(),
-            _ => new MilitiaEquipmentFactory()
+            UnitCategory.Military => new MilitiaEquipmentFactoryFactory(),
+            UnitCategory.Archer => new ArcherEquipmentFactoryFactory(),
+            UnitCategory.Knight => new KnightEquipmentFactoryFactory(),
+            _ => new MilitiaEquipmentFactoryFactory()
         };
 
-        return new Unit(equipmentFactory.CreateWeapon(), equipmentFactory.CreateTransportation());
+        return new Unit(equipmentFactoryFactory.CreateWeapon(), equipmentFactoryFactory.CreateTransportation());
     }
 }

@@ -20,7 +20,7 @@ public class StarbucksControllerTests
     }
 
     [Test]
-    public void menus()
+    public void default_menus()
     {
         _response = _starbucksController.GetMenu();
 

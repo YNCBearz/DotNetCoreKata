@@ -23,64 +23,49 @@ public class RgbControllerTests
         color.Should().Be(Color.Black);
     }
 
-    [Test]
-    public void red_light()
+    [TestCase(Color.Red, Color.Red)]
+    [TestCase(Color.Green, Color.Green)]
+    [TestCase(Color.Blue, Color.Blue)]
+    public void one_light(Color light, Color expected)
     {
-        _rgbController.TurnOnLight(Color.Red);
+        _rgbController.TurnOnLight(light);
         var color = _rgbController.Display();
-        color.Should().Be(Color.Red);
+        color.Should().Be(expected);
     }
 
-    [Test]
-    public void green_light()
+    [TestCase(new[] {Color.Red, Color.Green}, Color.Yellow)]
+    [TestCase(new[] {Color.Red, Color.Blue}, Color.Violet)]
+    [TestCase(new[] {Color.Green, Color.Blue}, Color.Cyan)]
+    public void two_lights(Color[] lights, Color expected)
     {
-        _rgbController.TurnOnLight(Color.Green);
+        _rgbController.TurnOnLight(lights[0]);
+        _rgbController.TurnOnLight(lights[1]);
         var color = _rgbController.Display();
-        color.Should().Be(Color.Green);
+        color.Should().Be(expected);
     }
 
-    [Test]
-    public void blue_light()
+    [TestCase(new[] {Color.Red, Color.Green, Color.Blue}, Color.White)]
+    public void three_lights(Color[] lights, Color expected)
     {
-        _rgbController.TurnOnLight(Color.Blue);
+        _rgbController.TurnOnLight(lights[0]);
+        _rgbController.TurnOnLight(lights[1]);
+        _rgbController.TurnOnLight(lights[2]);
         var color = _rgbController.Display();
-        color.Should().Be(Color.Blue);
+        color.Should().Be(expected);
     }
 
-    [Test]
-    public void red_and_green()
+    [TestCase(new[]{ Color.Red, Color.Green }, Color.Red, Color.Green)]
+    [TestCase(new[]{ Color.Red, Color.Blue }, Color.Blue, Color.Red)]
+    [TestCase(new[]{ Color.Red, Color.Green, Color.Blue }, Color.Green, Color.Violet)]
+    public void remove_one_light(Color[] originalLights, Color lightToRemove, Color expected)
     {
-        _rgbController.TurnOnLight(Color.Red);
-        _rgbController.TurnOnLight(Color.Green);
-        var color = _rgbController.Display();
-        color.Should().Be(Color.Yellow);
-    }
+        foreach (var light in originalLights)
+        {
+            _rgbController.TurnOnLight(light);
+        }
 
-    [Test]
-    public void red_and_blue()
-    {
-        _rgbController.TurnOnLight(Color.Red);
-        _rgbController.TurnOnLight(Color.Blue);
+        _rgbController.TurnOffLight(lightToRemove);
         var color = _rgbController.Display();
-        color.Should().Be(Color.Violet);
-    }
-
-    [Test]
-    public void green_and_blue()
-    {
-        _rgbController.TurnOnLight(Color.Green);
-        _rgbController.TurnOnLight(Color.Blue);
-        var color = _rgbController.Display();
-        color.Should().Be(Color.Cyan);
-    }
-
-    [Test]
-    public void red_and_green_and_blue()
-    {
-        _rgbController.TurnOnLight(Color.Red);
-        _rgbController.TurnOnLight(Color.Green);
-        _rgbController.TurnOnLight(Color.Blue);
-        var color = _rgbController.Display();
-        color.Should().Be(Color.White);
+        color.Should().Be(expected);
     }
 }

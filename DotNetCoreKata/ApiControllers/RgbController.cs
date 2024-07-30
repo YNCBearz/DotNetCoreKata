@@ -8,10 +8,6 @@ public class RgbController
 
     public Color Display()
     {
-        if (_lights.Count == 1)
-        {
-            return _lights.First();
-        }
         
         if (_lights.Count == 3)
         {
@@ -33,11 +29,21 @@ public class RgbController
             return Color.Cyan;
         }
 
+        if (_lights.Count == 1)
+        {
+            return _lights.First();
+        }
+        
         return Color.Black;
     }
 
     public void TurnOnLight(Color color)
     {
         _lights.Add(color);
+    }
+
+    public void TurnOffLight(Color color)
+    {
+        _lights.Remove(color);
     }
 }

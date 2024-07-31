@@ -1,25 +1,25 @@
-﻿using DotNetCoreKata.ApiControllers;
-using DotNetCoreKata.Enums;
+﻿using DotNetCoreKata.Enums;
+using DotNetCoreKata.Services.Rgb;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace DotNetCoreKata.Tests.UnitTests.ApiControllers;
+namespace DotNetCoreKata.Tests.UnitTests.Services.Rgb;
 
 [TestFixture]
-public class RgbControllerTests
+public class RgbMonitorTests
 {
-    private RgbController _rgbController;
+    private RgbMonitor _rgbMonitor;
 
     [SetUp]
     public void SetUp()
     {
-        _rgbController = new RgbController();
+        _rgbMonitor = new RgbMonitor();
     }
 
     [Test]
     public void black_screen()
     {
-        var color = _rgbController.Display();
+        var color = _rgbMonitor.Display();
         color.Should().Be(Color.Black);
     }
 
@@ -28,8 +28,8 @@ public class RgbControllerTests
     [TestCase(Color.Blue, Color.Blue)]
     public void one_light(Color light, Color expected)
     {
-        _rgbController.TurnOnLight(light);
-        var color = _rgbController.Display();
+        _rgbMonitor.TurnOnLight(light);
+        var color = _rgbMonitor.Display();
         color.Should().Be(expected);
     }
 
@@ -38,34 +38,34 @@ public class RgbControllerTests
     [TestCase(new[] {Color.Green, Color.Blue}, Color.Cyan)]
     public void two_lights(Color[] lights, Color expected)
     {
-        _rgbController.TurnOnLight(lights[0]);
-        _rgbController.TurnOnLight(lights[1]);
-        var color = _rgbController.Display();
+        _rgbMonitor.TurnOnLight(lights[0]);
+        _rgbMonitor.TurnOnLight(lights[1]);
+        var color = _rgbMonitor.Display();
         color.Should().Be(expected);
     }
 
     [TestCase(new[] {Color.Red, Color.Green, Color.Blue}, Color.White)]
     public void three_lights(Color[] lights, Color expected)
     {
-        _rgbController.TurnOnLight(lights[0]);
-        _rgbController.TurnOnLight(lights[1]);
-        _rgbController.TurnOnLight(lights[2]);
-        var color = _rgbController.Display();
+        _rgbMonitor.TurnOnLight(lights[0]);
+        _rgbMonitor.TurnOnLight(lights[1]);
+        _rgbMonitor.TurnOnLight(lights[2]);
+        var color = _rgbMonitor.Display();
         color.Should().Be(expected);
     }
 
-    [TestCase(new[]{ Color.Red, Color.Green }, Color.Red, Color.Green)]
-    [TestCase(new[]{ Color.Red, Color.Blue }, Color.Blue, Color.Red)]
-    [TestCase(new[]{ Color.Red, Color.Green, Color.Blue }, Color.Green, Color.Violet)]
+    [TestCase(new[] {Color.Red, Color.Green}, Color.Red, Color.Green)]
+    [TestCase(new[] {Color.Red, Color.Blue}, Color.Blue, Color.Red)]
+    [TestCase(new[] {Color.Red, Color.Green, Color.Blue}, Color.Green, Color.Violet)]
     public void remove_one_light(Color[] originalLights, Color lightToRemove, Color expected)
     {
         foreach (var light in originalLights)
         {
-            _rgbController.TurnOnLight(light);
+            _rgbMonitor.TurnOnLight(light);
         }
 
-        _rgbController.TurnOffLight(lightToRemove);
-        var color = _rgbController.Display();
+        _rgbMonitor.TurnOffLight(lightToRemove);
+        var color = _rgbMonitor.Display();
         color.Should().Be(expected);
     }
 }

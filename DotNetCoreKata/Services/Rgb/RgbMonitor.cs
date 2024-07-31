@@ -1,19 +1,18 @@
 ﻿using DotNetCoreKata.Enums;
 
-namespace DotNetCoreKata.ApiControllers;
+namespace DotNetCoreKata.Services.Rgb;
 
-public class RgbController
+public class RgbMonitor
 {
     private readonly HashSet<Color> _lights = [];
 
     public Color Display()
     {
-        
         if (_lights.Count == 3)
         {
             return Color.White;
         }
-        
+
         if (_lights.Count == 2)
         {
             if (_lights.Contains(Color.Red) && _lights.Contains(Color.Green))
@@ -33,7 +32,7 @@ public class RgbController
         {
             return _lights.First();
         }
-        
+
         return Color.Black;
     }
 

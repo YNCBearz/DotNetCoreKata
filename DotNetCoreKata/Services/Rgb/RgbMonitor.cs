@@ -42,13 +42,13 @@ public class RgbMonitor
         return Color.Black;
     }
 
-    public void TurnOnLight(RgbColor color)
+    public void TurnOnLight(RgbColor rgbColor)
     {
-        _lights.Add(color);
+        _lights.Add(rgbColor);
     }
 
-    public void TurnOffLight(RgbColor color)
+    public void TurnOffLight(RgbColor rgbColor)
     {
-        _lights.Remove(color);
+        _lights.Remove(rgbColor);
     }
 }

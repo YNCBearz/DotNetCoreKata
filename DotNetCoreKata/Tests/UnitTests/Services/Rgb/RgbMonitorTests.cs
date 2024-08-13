@@ -23,20 +23,20 @@ public class RgbMonitorTests
         color.Should().Be(Color.Black);
     }
 
-    [TestCase(Color.Red, Color.Red)]
-    [TestCase(Color.Green, Color.Green)]
-    [TestCase(Color.Blue, Color.Blue)]
-    public void one_light(Color light, Color expected)
+    [TestCase(RgbColor.Red, Color.Red)]
+    [TestCase(RgbColor.Green, Color.Green)]
+    [TestCase(RgbColor.Blue, Color.Blue)]
+    public void one_light(RgbColor light, Color expected)
     {
         _rgbMonitor.TurnOnLight(light);
         var color = _rgbMonitor.Display();
         color.Should().Be(expected);
     }
 
-    [TestCase(new[] {Color.Red, Color.Green}, Color.Yellow)]
-    [TestCase(new[] {Color.Red, Color.Blue}, Color.Violet)]
-    [TestCase(new[] {Color.Green, Color.Blue}, Color.Cyan)]
-    public void two_lights(Color[] lights, Color expected)
+    [TestCase(new[] {RgbColor.Red, RgbColor.Green}, Color.Yellow)]
+    [TestCase(new[] {RgbColor.Red, RgbColor.Blue}, Color.Violet)]
+    [TestCase(new[] {RgbColor.Green, RgbColor.Blue}, Color.Cyan)]
+    public void two_lights(RgbColor[] lights, Color expected)
     {
         _rgbMonitor.TurnOnLight(lights[0]);
         _rgbMonitor.TurnOnLight(lights[1]);
@@ -44,8 +44,8 @@ public class RgbMonitorTests
         color.Should().Be(expected);
     }
 
-    [TestCase(new[] {Color.Red, Color.Green, Color.Blue}, Color.White)]
-    public void three_lights(Color[] lights, Color expected)
+    [TestCase(new[] {RgbColor.Red, RgbColor.Green, RgbColor.Blue}, Color.White)]
+    public void three_lights(RgbColor[] lights, Color expected)
     {
         _rgbMonitor.TurnOnLight(lights[0]);
         _rgbMonitor.TurnOnLight(lights[1]);
@@ -54,10 +54,10 @@ public class RgbMonitorTests
         color.Should().Be(expected);
     }
 
-    [TestCase(new[] {Color.Red, Color.Green}, Color.Red, Color.Green)]
-    [TestCase(new[] {Color.Red, Color.Blue}, Color.Blue, Color.Red)]
-    [TestCase(new[] {Color.Red, Color.Green, Color.Blue}, Color.Green, Color.Violet)]
-    public void remove_one_light(Color[] originalLights, Color lightToRemove, Color expected)
+    [TestCase(new[] {RgbColor.Red, RgbColor.Green}, RgbColor.Red, Color.Green)]
+    [TestCase(new[] {RgbColor.Red, RgbColor.Blue}, RgbColor.Blue, Color.Red)]
+    [TestCase(new[] {RgbColor.Red, RgbColor.Green, RgbColor.Blue}, RgbColor.Green, Color.Violet)]
+    public void remove_one_light(RgbColor[] originalLights, RgbColor lightToRemove, Color expected)
     {
         foreach (var light in originalLights)
         {

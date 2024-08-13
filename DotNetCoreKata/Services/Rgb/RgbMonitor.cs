@@ -4,7 +4,7 @@ namespace DotNetCoreKata.Services.Rgb;
 
 public class RgbMonitor
 {
-    private readonly HashSet<Color> _lights = [];
+    private readonly HashSet<RgbColor> _lights = [];
 
     public Color Display()
     {
@@ -15,12 +15,12 @@ public class RgbMonitor
 
         if (_lights.Count == 2)
         {
-            if (_lights.Contains(Color.Red) && _lights.Contains(Color.Green))
+            if (_lights.Contains(RgbColor.Red) && _lights.Contains(RgbColor.Green))
             {
                 return Color.Yellow;
             }
 
-            if (_lights.Contains(Color.Red) && _lights.Contains(Color.Blue))
+            if (_lights.Contains(RgbColor.Red) && _lights.Contains(RgbColor.Blue))
             {
                 return Color.Violet;
             }
@@ -30,18 +30,24 @@ public class RgbMonitor
 
         if (_lights.Count == 1)
         {
-            return _lights.First();
+            return _lights.First() switch
+            {
+                RgbColor.Red => Color.Red,
+                RgbColor.Green => Color.Green,
+                RgbColor.Blue => Color.Blue,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         return Color.Black;
     }
 
-    public void TurnOnLight(Color color)
+    public void TurnOnLight(RgbColor color)
     {
         _lights.Add(color);
     }
 
-    public void TurnOffLight(Color color)
+    public void TurnOffLight(RgbColor color)
     {
         _lights.Remove(color);
     }

@@ -1,54 +1,113 @@
-﻿using DotNetCoreKata.Enums;
+﻿using DotNetCoreKata.DomainModels;
+using DotNetCoreKata.DomainModels.Rgb.ColorStates;
+using DotNetCoreKata.Enums;
 
 namespace DotNetCoreKata.Services.Rgb;
 
 public class RgbMonitor
 {
-    private readonly HashSet<RgbColor> _lights = [];
+    private IColorState _state;
+    private readonly BlackColorState _blackColorState;
+    private readonly RedColorState _redColorState;
+    private readonly GreenColorState _greenColorState;
+    private readonly BlueColorState _blueColorState;
+    private readonly YellowColorState _yellowColorState;
+    private readonly VioletColorState _violetColorState;
+    private readonly CyanColorState _cyanColorState;
+    private readonly WhiteColorState _whiteColorState;
+
+    public RgbMonitor()
+    {
+        _blackColorState = new BlackColorState(this);
+        _redColorState = new RedColorState(this);
+        _greenColorState = new GreenColorState(this);
+        _blueColorState = new BlueColorState(this);
+        _yellowColorState = new YellowColorState(this);
+        _violetColorState = new VioletColorState(this);
+        _cyanColorState = new CyanColorState(this);
+        _whiteColorState = new WhiteColorState(this);
+        
+        _state = _blackColorState;
+    }
 
     public Color Display()
     {
-        if (_lights.Count == 3)
-        {
-            return Color.White;
-        }
-
-        if (_lights.Count == 2)
-        {
-            if (_lights.Contains(RgbColor.Red) && _lights.Contains(RgbColor.Green))
-            {
-                return Color.Yellow;
-            }
-
-            if (_lights.Contains(RgbColor.Red) && _lights.Contains(RgbColor.Blue))
-            {
-                return Color.Violet;
-            }
-
-            return Color.Cyan;
-        }
-
-        if (_lights.Count == 1)
-        {
-            return _lights.First() switch
-            {
-                RgbColor.Red => Color.Red,
-                RgbColor.Green => Color.Green,
-                RgbColor.Blue => Color.Blue,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-
-        return Color.Black;
+        return _state.Display();
     }
 
     public void TurnOnLight(RgbColor rgbColor)
     {
-        _lights.Add(rgbColor);
+        switch (rgbColor)
+        {
+            case RgbColor.Red:
+                _state.TurnOnRedLight();
+                break;
+            case RgbColor.Green:
+                _state.TurnOnGreenLight();
+                break;
+            case RgbColor.Blue:
+                _state.TurnOnBlueLight();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(rgbColor), rgbColor, "Invalid RGB color.");
+        }
     }
 
     public void TurnOffLight(RgbColor rgbColor)
     {
-        _lights.Remove(rgbColor);
+        switch (rgbColor)
+        {
+            case RgbColor.Red:
+                _state.TurnOffRedLight();
+                break;
+            case RgbColor.Green:
+                _state.TurnOffGreenLight();
+                break;
+            case RgbColor.Blue:
+                _state.TurnOffBlueLight();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(rgbColor), rgbColor, "Invalid RGB color.");
+        }
+    }
+
+    public void ToBlackColorState()
+    {
+        _state = _blackColorState;
+    }
+
+    public void ToRedColorState()
+    {
+        _state = _redColorState;
+    }
+    
+    public void ToGreenColorState()
+    {
+        _state = _greenColorState;
+    }
+    
+    public void ToBlueColorState()
+    {
+        _state = _blueColorState;
+    }
+    
+    public void ToYellowColorState()
+    {
+        _state = _yellowColorState;
+    }
+    
+    public void ToVioletColorState()
+    {
+        _state = _violetColorState;
+    }
+    
+    public void ToCyanColorState()
+    {
+        _state = _cyanColorState;
+    }
+    
+    public void ToWhiteColorState()
+    {
+        _state = _whiteColorState;
     }
 }

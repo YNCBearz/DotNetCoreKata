@@ -12,7 +12,7 @@ public class RgbMonitor
     private readonly GreenColorState _greenColorState;
     private readonly BlueColorState _blueColorState;
     private readonly YellowColorState _yellowColorState;
-    private readonly VioletColorState _violetColorState;
+    private readonly MagentaColorState _magentaColorState;
     private readonly CyanColorState _cyanColorState;
     private readonly WhiteColorState _whiteColorState;
 
@@ -23,7 +23,7 @@ public class RgbMonitor
         _greenColorState = new GreenColorState(this);
         _blueColorState = new BlueColorState(this);
         _yellowColorState = new YellowColorState(this);
-        _violetColorState = new VioletColorState(this);
+        _magentaColorState = new MagentaColorState(this);
         _cyanColorState = new CyanColorState(this);
         _whiteColorState = new WhiteColorState(this);
         _state = _blackColorState;
@@ -83,9 +83,9 @@ public class RgbMonitor
         _state = _yellowColorState;
     }
 
-    public void ToVioletColorState()
+    public void ToMagentaColorState()
     {
-        _state = _violetColorState;
+        _state = _magentaColorState;
     }
 
     public void ToCyanColorState()

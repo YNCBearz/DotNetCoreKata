@@ -12,7 +12,7 @@ public class BlueColorState(RgbMonitor rgbMonitor): IColorState
 
     public void TurnOnRedLight()
     {
-        rgbMonitor.ToVioletColorState();
+        rgbMonitor.ToMagentaColorState();
     }
 
     public void TurnOnGreenLight()

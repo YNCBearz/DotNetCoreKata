@@ -32,7 +32,7 @@ public class WhiteColorState(RgbMonitor rgbMonitor): IColorState
 
     public void TurnOffGreenLight()
     {
-        rgbMonitor.ToVioletColorState();
+        rgbMonitor.ToMagentaColorState();
     }
 
     public void TurnOffBlueLight()

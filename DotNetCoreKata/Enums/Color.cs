@@ -7,7 +7,7 @@ public enum Color
     Green = 2,
     Blue = 3,
     Yellow = 4,
-    Violet = 5,
+    Magenta = 5,
     Cyan = 6,
     White = 7,
 }

@@ -3,11 +3,11 @@ using DotNetCoreKata.Services.Rgb;
 
 namespace DotNetCoreKata.DomainModels.Rgb.ColorStates;
 
-public class VioletColorState(RgbMonitor rgbMonitor): IColorState
+public class MagentaColorState(RgbMonitor rgbMonitor): IColorState
 {
     public Color Display()
     {
-        return Color.Violet;
+        return Color.Magenta;
     }
 
     public void TurnOnRedLight()

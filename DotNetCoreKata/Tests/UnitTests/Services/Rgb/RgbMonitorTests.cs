@@ -34,7 +34,7 @@ public class RgbMonitorTests
     }
 
     [TestCase(new[] {RgbColor.Red, RgbColor.Green}, Color.Yellow)]
-    [TestCase(new[] {RgbColor.Red, RgbColor.Blue}, Color.Violet)]
+    [TestCase(new[] {RgbColor.Red, RgbColor.Blue}, Color.Magenta)]
     [TestCase(new[] {RgbColor.Green, RgbColor.Blue}, Color.Cyan)]
     public void two_lights(RgbColor[] lights, Color expected)
     {
@@ -56,7 +56,7 @@ public class RgbMonitorTests
 
     [TestCase(new[] {RgbColor.Red, RgbColor.Green}, RgbColor.Red, Color.Green)]
     [TestCase(new[] {RgbColor.Red, RgbColor.Blue}, RgbColor.Blue, Color.Red)]
-    [TestCase(new[] {RgbColor.Red, RgbColor.Green, RgbColor.Blue}, RgbColor.Green, Color.Violet)]
+    [TestCase(new[] {RgbColor.Red, RgbColor.Green, RgbColor.Blue}, RgbColor.Green, Color.Magenta)]
     public void remove_one_light(RgbColor[] originalLights, RgbColor lightToRemove, Color expected)
     {
         foreach (var light in originalLights)

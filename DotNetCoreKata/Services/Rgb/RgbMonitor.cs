@@ -26,7 +26,6 @@ public class RgbMonitor
         _violetColorState = new VioletColorState(this);
         _cyanColorState = new CyanColorState(this);
         _whiteColorState = new WhiteColorState(this);
-        
         _state = _blackColorState;
     }
 
@@ -37,38 +36,26 @@ public class RgbMonitor
 
     public void TurnOnLight(RgbColor rgbColor)
     {
-        switch (rgbColor)
+        var turnOnColorLightMap = new Dictionary<RgbColor, Action>
         {
-            case RgbColor.Red:
-                _state.TurnOnRedLight();
-                break;
-            case RgbColor.Green:
-                _state.TurnOnGreenLight();
-                break;
-            case RgbColor.Blue:
-                _state.TurnOnBlueLight();
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(rgbColor), rgbColor, "Invalid RGB color.");
-        }
+            {RgbColor.Red, () => _state.TurnOnRedLight()},
+            {RgbColor.Green, () => _state.TurnOnGreenLight()},
+            {RgbColor.Blue, () => _state.TurnOnBlueLight()}
+        };
+
+        turnOnColorLightMap[rgbColor]();
     }
 
     public void TurnOffLight(RgbColor rgbColor)
     {
-        switch (rgbColor)
+        var turnOffColorLightMap = new Dictionary<RgbColor, Action>
         {
-            case RgbColor.Red:
-                _state.TurnOffRedLight();
-                break;
-            case RgbColor.Green:
-                _state.TurnOffGreenLight();
-                break;
-            case RgbColor.Blue:
-                _state.TurnOffBlueLight();
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(rgbColor), rgbColor, "Invalid RGB color.");
-        }
+            {RgbColor.Red, () => _state.TurnOffRedLight()},
+            {RgbColor.Green, () => _state.TurnOffGreenLight()},
+            {RgbColor.Blue, () => _state.TurnOffBlueLight()}
+        };
+
+        turnOffColorLightMap[rgbColor]();
     }
 
     public void ToBlackColorState()
@@ -80,32 +67,32 @@ public class RgbMonitor
     {
         _state = _redColorState;
     }
-    
+
     public void ToGreenColorState()
     {
         _state = _greenColorState;
     }
-    
+
     public void ToBlueColorState()
     {
         _state = _blueColorState;
     }
-    
+
     public void ToYellowColorState()
     {
         _state = _yellowColorState;
     }
-    
+
     public void ToVioletColorState()
     {
         _state = _violetColorState;
     }
-    
+
     public void ToCyanColorState()
     {
         _state = _cyanColorState;
     }
-    
+
     public void ToWhiteColorState()
     {
         _state = _whiteColorState;

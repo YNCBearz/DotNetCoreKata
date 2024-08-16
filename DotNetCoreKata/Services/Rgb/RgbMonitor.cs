@@ -1,5 +1,5 @@
 ﻿using DotNetCoreKata.DomainModels;
-using DotNetCoreKata.DomainModels.Rgb.ColorStates;
+using DotNetCoreKata.DomainModels.Rgb;
 using DotNetCoreKata.Enums;
 
 namespace DotNetCoreKata.Services.Rgb;

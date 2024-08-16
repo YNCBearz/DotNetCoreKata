@@ -1,7 +1,7 @@
 ﻿using DotNetCoreKata.Enums;
 using DotNetCoreKata.Services.Rgb;
 
-namespace DotNetCoreKata.DomainModels.Rgb.ColorStates;
+namespace DotNetCoreKata.DomainModels.Rgb;
 
 public class BlueColorState(RgbMonitor rgbMonitor): IColorState
 {

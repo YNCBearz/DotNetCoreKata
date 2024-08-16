@@ -1,23 +1,23 @@
 ﻿using DotNetCoreKata.Enums;
 using DotNetCoreKata.Services.Rgb;
 
-namespace DotNetCoreKata.DomainModels.Rgb.ColorStates;
+namespace DotNetCoreKata.DomainModels.Rgb;
 
-public class CyanColorState(RgbMonitor rgbMonitor): IColorState
+public class MagentaColorState(RgbMonitor rgbMonitor): IColorState
 {
     public Color Display()
     {
-        return Color.Cyan;
+        return Color.Magenta;
     }
 
     public void TurnOnRedLight()
     {
-        rgbMonitor.ToWhiteColorState();
+        // Do nothing
     }
 
     public void TurnOnGreenLight()
     {
-        // Do nothing
+        rgbMonitor.ToWhiteColorState();
     }
 
     public void TurnOnBlueLight()
@@ -27,16 +27,16 @@ public class CyanColorState(RgbMonitor rgbMonitor): IColorState
 
     public void TurnOffRedLight()
     {
-        // Do nothing
+        rgbMonitor.ToBlueColorState();
     }
 
     public void TurnOffGreenLight()
     {
-        rgbMonitor.ToBlueColorState();
+        // Do nothing
     }
 
     public void TurnOffBlueLight()
     {
-        rgbMonitor.ToGreenColorState();
+        rgbMonitor.ToRedColorState();
     }
 }

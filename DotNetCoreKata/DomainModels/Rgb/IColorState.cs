@@ -1,6 +1,6 @@
 ﻿using DotNetCoreKata.Enums;
 
-namespace DotNetCoreKata.DomainModels.Rgb.ColorStates;
+namespace DotNetCoreKata.DomainModels.Rgb;
 
 public interface IColorState
 {

@@ -1,10 +1,9 @@
-﻿using DotNetCoreKata.DomainModels;
-using DotNetCoreKata.DomainModels.Rgb;
+﻿using DotNetCoreKata.DomainModels.Rgb;
 using DotNetCoreKata.Enums;
 
 namespace DotNetCoreKata.Services.Rgb;
 
-public class RgbMonitor
+public class RgbMonitor : IRgbMonitor
 {
     private IColorState _state;
     private readonly BlackColorState _blackColorState;

@@ -3,7 +3,7 @@ using DotNetCoreKata.Services.Rgb;
 
 namespace DotNetCoreKata.DomainModels.Rgb;
 
-internal class GreenColorState(RgbMonitor rgbMonitor) : IColorState
+internal class GreenColorState(IRgbMonitor rgbMonitor) : IColorState
 {
     public Color Display()
     {

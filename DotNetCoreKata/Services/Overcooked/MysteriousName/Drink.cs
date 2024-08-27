@@ -23,6 +23,6 @@ public class Drink
     
     public string GetContent()
     {
-        return $"{_content}: {_sugar}{_ice}";
+        return $"{_content}: {_sugar}, {_ice}";
     }
 }

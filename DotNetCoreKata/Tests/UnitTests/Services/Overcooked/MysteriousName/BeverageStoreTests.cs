@@ -14,10 +14,10 @@ public class BeverageStoreTests
         var beverageStore = new BeverageStore();
         
         // Act
-        var drink = beverageStore.Get("qqneineidrinkabletomeiputea", "half sugar", "less ice");
+        var drink = beverageStore.Order("qqneineidrinkabletomeiputea", "half sugar", "less ice");
         
         // Assert
-        drink.GetContent().Should().Be("BubbleTea: half sugar, less ice");
+        drink.GetDescription().Should().Be("BubbleTea: half sugar, less ice");
     }
     
     [Test]
@@ -27,10 +27,10 @@ public class BeverageStoreTests
         var beverageStore = new BeverageStore();
         
         // Act
-        var drink = beverageStore.Get("unknown", "no sugar", "less ice");
+        var drink = beverageStore.Order("unknown", "no sugar", "less ice");
         
         // Assert
-        drink.GetContent().Should().Be("Coke: no sugar, less ice");
+        drink.GetDescription().Should().Be("Coke: no sugar, less ice");
     }
 
 }

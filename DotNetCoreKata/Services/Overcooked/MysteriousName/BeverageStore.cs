@@ -2,21 +2,23 @@
 
 public class BeverageStore
 {
-    public Drink Get(string n, string s, string i)
+    private const string BubbleTeaInMenu = "qqneineidrinkabletomeiputea";
+
+    public Drink Order(string name, string sugarLevel, string iceLevel)
     {
         var drink = new Drink();
 
-        if (n == "qqneineidrinkabletomeiputea")
+        if (name == BubbleTeaInMenu)
         {
-            drink.SetContent("BubbleTea");
+            drink.Pour("BubbleTea");
         }
         else
         {
-            drink.SetContent("Coke");
+            drink.Pour("Coke");
         }
-        
-        drink.SetSugar(s);
-        drink.SetIce(i);
+
+        drink.SetSugarLevel(sugarLevel);
+        drink.AddIce(iceLevel);
 
         return drink;
     }   

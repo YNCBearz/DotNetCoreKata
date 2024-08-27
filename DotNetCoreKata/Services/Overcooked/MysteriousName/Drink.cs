@@ -3,26 +3,26 @@
 public class Drink
 {
     private string _content = "Water";
-    private string _sugar = "no sugar";
-    private string _ice = "no ice";
+    private string _sugarLevel = "no sugar";
+    private string _iceLevel = "no ice";
 
-    public void SetContent(string coke)
+    public void Pour(string content)
     {
-        _content = coke;
+        _content = content;
     }
 
-    public void SetSugar(string s)
+    public void SetSugarLevel(string sugarLevel)
     {
-        _sugar = s;
+        _sugarLevel = sugarLevel;
     }
 
-    public void SetIce(string i)
+    public void AddIce(string iceLevel)
     {
-        _ice = i;
+        _iceLevel = iceLevel;
     }
     
-    public string GetContent()
+    public string GetDescription()
     {
-        return $"{_content}: {_sugar}, {_ice}";
+        return $"{_content}: {_sugarLevel}, {_iceLevel}";
     }
 }

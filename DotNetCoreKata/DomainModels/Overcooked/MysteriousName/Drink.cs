@@ -1,4 +1,4 @@
-﻿namespace DotNetCoreKata.Services.Overcooked.MysteriousName;
+﻿namespace DotNetCoreKata.DomainModels.Overcooked.MysteriousName;
 
 public class Drink
 {

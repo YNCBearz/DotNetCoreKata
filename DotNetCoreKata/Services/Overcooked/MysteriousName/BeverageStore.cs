@@ -1,4 +1,6 @@
-﻿namespace DotNetCoreKata.Services.Overcooked.MysteriousName;
+﻿using DotNetCoreKata.DomainModels.Overcooked.MysteriousName;
+
+namespace DotNetCoreKata.Services.Overcooked.MysteriousName;
 
 public class BeverageStore
 {

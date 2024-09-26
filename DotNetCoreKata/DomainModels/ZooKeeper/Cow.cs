@@ -1,9 +1,10 @@
 ﻿namespace DotNetCoreKata.DomainModels.ZooKeeper;
 
+// Element
 public class Cow: IFeedable
 {
-    public void Feed()
+    public void FeedBy(IFeeder feeder)
     {
-        Console.WriteLine("Cow eats grass");
+        feeder.Feed(this);
     }
 }

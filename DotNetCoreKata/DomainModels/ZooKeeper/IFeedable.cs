@@ -1,6 +1,8 @@
-﻿namespace DotNetCoreKata.DomainModels.ZooKeeper;
+﻿using DotNetCoreKata.Services.ZooKeeper;
+
+namespace DotNetCoreKata.DomainModels.ZooKeeper;
 
 public interface IFeedable
 {
-    void Feed();
+    void FeedBy(IFeeder feeder);
 }

@@ -13,9 +13,11 @@ public class Zoo
             new Lion()
         ];
 
+        var feeder = new Feeder();
+
         foreach (var animal in animals)
         {
-            animal.Feed();
+            animal.FeedBy(feeder);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using DotNetCoreKata.DomainModels.ZooKeeper;
-using DotNetCoreKata.Tests.UnitTests.Services.ZooKeeper;
 
 namespace DotNetCoreKata.Services.ZooKeeper;
 

@@ -1,6 +1,4 @@
-﻿using DotNetCoreKata.Services.ZooKeeper;
-
-namespace DotNetCoreKata.DomainModels.ZooKeeper;
+﻿namespace DotNetCoreKata.DomainModels.ZooKeeper;
 
 public interface IFeedable
 {

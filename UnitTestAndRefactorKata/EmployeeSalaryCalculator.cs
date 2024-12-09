@@ -14,9 +14,11 @@ public class EmployeeSalaryCalculator
 
     public decimal CalculateSalary(string employeeType, string employeeId, int month, int year)
     {
+        // this is our dependency
         var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year); 
         decimal salary = 0;
 
+        // this is the logic we want to test
         switch (employeeType)
         {
             case "Full-time":

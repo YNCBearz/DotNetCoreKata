@@ -50,6 +50,13 @@ public class EmployeeSalaryCalculator
         var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year);
 
         // this is the logic we want to test
+        return GetNetSalary(employeeType, taxRate, overtimeRate, hoursWorked, bonus);
+    }
+
+    public decimal GetNetSalary(string employeeType, decimal taxRate, decimal overtimeRate, int hoursWorked, decimal bonus)
+    {
+        decimal baseSalary;
+
         switch (employeeType)
         {
             case "Full-time":
@@ -69,6 +76,7 @@ public class EmployeeSalaryCalculator
         }
 
         
+        // 加班薪資
         decimal overtimeSalary = 0;
         if (hoursWorked > 160) 
         {
@@ -76,8 +84,11 @@ public class EmployeeSalaryCalculator
             overtimeSalary = overtimeHours * (baseSalary / 160) * overtimeRate; 
         }
 
+        // 總薪資
         var grossSalary = baseSalary + bonus + overtimeSalary;
+        // 稅金
         var tax = grossSalary * taxRate; 
+        // 淨薪資
         var netSalary = grossSalary - tax;
 
         return netSalary;

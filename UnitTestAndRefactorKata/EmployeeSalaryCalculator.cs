@@ -44,12 +44,10 @@ public class EmployeeSalaryCalculator
         decimal overtimeRate = 1.5m 
     )
     {
-        var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year); // Feature Envy：調用外部類別
         var bonus = _employeeRepo.GetEmployeeBonus(employeeId, employeeType);   // Feature Envy：調用外部類別
         decimal baseSalary = 0;
         // this is our dependency
-        var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year); 
-        decimal salary = 0;
+        var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year);
 
         // this is the logic we want to test
         switch (employeeType)

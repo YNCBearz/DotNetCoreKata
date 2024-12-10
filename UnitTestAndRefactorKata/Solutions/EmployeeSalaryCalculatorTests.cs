@@ -20,6 +20,14 @@ public class EmployeeSalaryCalculatorTests
 
         Assert.That(netSalary, Is.EqualTo(2700m));
     }
+    
+    [Test]
+    public void full_time_over_time()
+    {
+        var netSalary = _calculator.GetNetSalary("Full-time", 0.1m, 1.2m, 200, 0);
+
+        Assert.That(netSalary, Is.EqualTo(3510m));
+    }
 
     [Test]
     public void part_time_no_over_time()

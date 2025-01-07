@@ -2,6 +2,12 @@
 
 namespace UnitTestAndRefactorKata.Solutions;
 
+/**
+ * 測試三招
+ * 1. extract interface
+ * 2. extract method sut to method
+ * 3. overwrite dependency to method
+ */
 [TestFixture]
 public class EmployeeSalaryCalculatorTests
 {

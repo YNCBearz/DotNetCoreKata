@@ -86,12 +86,23 @@ public class Rate
 
     public decimal TaxRate { get; private set; }
     public decimal OvertimeRate { get; private set; }
+
+    public decimal GetOvertimeSalary(Employee employee)
+    {
+        if (employee.HoursWorked > 160)
+        {
+            var overtimeHours = employee.HoursWorked - 160;
+            var overtimeSalary = overtimeHours * (employee.GetBaseSalary() / 160) * OvertimeRate;
+            return overtimeSalary;
+        }
+
+        return 0;
+    }
 }
 
 public class EmployeeSalaryCalculator
 {
     private readonly IEmployeeRepo _employeeRepo;
-    private static int BaseWorkHour;
 
     public EmployeeSalaryCalculator(IEmployeeRepo employeeRepo)
     {
@@ -118,30 +129,13 @@ public class EmployeeSalaryCalculator
 
     private static decimal GetNetSalary(Employee employee, Rate rate)
     {
-        decimal baseSalary;
-
-        baseSalary = employee.GetBaseSalary();
-
-        var overtimeSalary = GetOvertimeSalary(employee, rate, baseSalary);
+        var baseSalary = employee.GetBaseSalary();
+        var overtimeSalary = rate.GetOvertimeSalary(employee);
 
         var grossSalary = baseSalary + employee.Bonus + overtimeSalary;
         var tax = grossSalary * rate.TaxRate;
         var netSalary = grossSalary - tax;
 
         return netSalary;
-    }
-
-    private static decimal GetOvertimeSalary(Employee employee, Rate rate, decimal baseSalary)
-    {
-        BaseWorkHour = 160;
-
-        if (employee.HoursWorked > BaseWorkHour)
-        {
-            var overtimeHours = employee.HoursWorked - BaseWorkHour;
-            var overtimeSalary = overtimeHours * (baseSalary / BaseWorkHour) * rate.OvertimeRate;
-            return overtimeSalary;
-        }
-
-        return 0;
     }
 }

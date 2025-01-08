@@ -54,25 +54,54 @@ public class Employee
     {
         decimal baseSalary;
 
-        switch (EmployeeType)
+        if (EmployeeType == "Full-time")
         {
-            case "Full-time":
-                baseSalary = 3200;
-                break;
-            case "Part-time":
-                baseSalary = HoursWorked * 20;
-                break;
-            case "Intern":
-                baseSalary = HoursWorked * 15;
-                break;
-            case "Contractor":
-                baseSalary = HoursWorked * 50;
-                break;
-            default:
-                throw new NotSupportedException("Unknown employee type");
+            var fullTimeEmployee = new FullTimeEmployee();
+            baseSalary = fullTimeEmployee.GetBaseSalary();
+        }
+        else if (EmployeeType == "Part-time")
+        {
+            var partTimeEmployee = new PartTimeEmployee(HoursWorked, 20);
+            baseSalary = partTimeEmployee.GetBaseSalary();
+        }
+        else if (EmployeeType == "Intern")
+        {
+            baseSalary = HoursWorked * 15;
+        }
+        else if (EmployeeType == "Contractor")
+        {
+            baseSalary = HoursWorked * 50;
+        }
+        else
+        {
+            throw new NotSupportedException("Unknown employee type");
         }
 
         return baseSalary;
+    }
+}
+
+public class PartTimeEmployee(int hoursWorked, int perHourSalary): IEmployee
+{
+    public int HoursWorked { get; } = hoursWorked;
+    public int PerHourSalary { get; } = perHourSalary;
+
+    public decimal GetBaseSalary()
+    {
+        return HoursWorked * PerHourSalary;
+    }
+}
+
+public interface IEmployee
+{
+    decimal GetBaseSalary();
+}
+
+public class FullTimeEmployee : IEmployee
+{
+    public decimal GetBaseSalary()
+    {
+        return 3200;
     }
 }
 

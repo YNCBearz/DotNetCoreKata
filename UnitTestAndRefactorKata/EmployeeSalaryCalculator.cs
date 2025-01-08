@@ -31,16 +31,7 @@ public class EmployeeSalaryCalculator
         var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year);
 
         // this is the logic we want to test
-
-        if (employeeType == "Full-Time")
-        {
-            var employee = new Employee("Full-Time");
-            baseSalary = employee.GetBaseSalary();
-        }
-        else
-        {
-            baseSalary = GetBaseSalary(employeeType, hoursWorked);
-        }
+        baseSalary = GetBaseSalary(employeeType, hoursWorked);
 
         decimal overtimeSalary = 0;
 
@@ -73,19 +64,5 @@ public class EmployeeSalaryCalculator
         }
 
         return dictionary[employeeType]();
-    }
-}
-
-public class Employee(string employeeType)
-{
-    public int baseSalary { get; set; }
-
-    public string employeeType { get; set; }
-    
-    public int hoursWorked { get; set; }
-
-    public int GetBaseSalary()
-    {
-        return 3200;
     }
 }

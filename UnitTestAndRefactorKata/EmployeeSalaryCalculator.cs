@@ -37,6 +37,57 @@ public class EmployeeRepo : IEmployeeRepo
     }
 }
 
+public class Employee
+{
+    public Employee(string employeeType, int hoursWorked, decimal bonus)
+    {
+        EmployeeType = employeeType;
+        HoursWorked = hoursWorked;
+        Bonus = bonus;
+    }
+
+    public string EmployeeType { get; private set; }
+    public int HoursWorked { get; private set; }
+    public decimal Bonus { get; private set; }
+
+    public decimal GetBaseSalary()
+    {
+        decimal baseSalary;
+
+        switch (EmployeeType)
+        {
+            case "Full-time":
+                baseSalary = 3200;
+                break;
+            case "Part-time":
+                baseSalary = HoursWorked * 20;
+                break;
+            case "Intern":
+                baseSalary = HoursWorked * 15;
+                break;
+            case "Contractor":
+                baseSalary = HoursWorked * 50;
+                break;
+            default:
+                throw new NotSupportedException("Unknown employee type");
+        }
+
+        return baseSalary;
+    }
+}
+
+public class Rate
+{
+    public Rate(decimal taxRate, decimal overtimeRate)
+    {
+        TaxRate = taxRate;
+        OvertimeRate = overtimeRate;
+    }
+
+    public decimal TaxRate { get; private set; }
+    public decimal OvertimeRate { get; private set; }
+}
+
 public class EmployeeSalaryCalculator
 {
     private readonly IEmployeeRepo _employeeRepo;
@@ -61,34 +112,25 @@ public class EmployeeSalaryCalculator
         var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year);
 
         // this is the logic we want to test
-        switch (employeeType)
-        {
-            case "Full-time":
-                baseSalary = 3200;
-                break;
-            case "Part-time":
-                baseSalary = hoursWorked * 20;
-                break;
-            case "Intern":
-                baseSalary = hoursWorked * 15;
-                break;
-            case "Contractor":
-                baseSalary = hoursWorked * 50;
-                break;
-            default:
-                throw new NotSupportedException("Unknown employee type");
-        }
+        return GetNetSalary(new Employee(employeeType, hoursWorked, bonus), new Rate(taxRate, overtimeRate));
+    }
+
+    private static decimal GetNetSalary(Employee employee, Rate rate)
+    {
+        decimal baseSalary;
+
+        baseSalary = employee.GetBaseSalary();
 
         decimal overtimeSalary = 0;
 
-        if (hoursWorked > 160)
+        if (employee.HoursWorked > 160)
         {
-            var overtimeHours = hoursWorked - 160;
-            overtimeSalary = overtimeHours * (baseSalary / 160) * overtimeRate;
+            var overtimeHours = employee.HoursWorked - 160;
+            overtimeSalary = overtimeHours * (baseSalary / 160) * rate.OvertimeRate;
         }
 
-        var grossSalary = baseSalary + bonus + overtimeSalary;
-        var tax = grossSalary * taxRate;
+        var grossSalary = baseSalary + employee.Bonus + overtimeSalary;
+        var tax = grossSalary * rate.TaxRate;
         var netSalary = grossSalary - tax;
 
         return netSalary;

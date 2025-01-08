@@ -1,79 +1,36 @@
 using NSubstitute;
 using NUnit.Framework;
 
-namespace UnitTestAndRefactorKata;
-
-public class Tests
+namespace UnitTestAndRefactorKata
 {
-    [SetUp]
-    public void Setup()
-    { }
-
-    [Test]
-    public void full_time_salary()
+    public class Tests
     {
-        var employeeRepo = NSubstitute.Substitute.For<IEmployeeRepo>();
+        private IEmployeeRepo _employeeRepo;
+        private EmployeeSalaryCalculator _employeeSalaryCalculator;
 
-        var employeeSalaryCalculator = new EmployeeSalaryCalculator(employeeRepo);
-        employeeRepo.GetEmployeeBonus(Arg.Any<string>(), Arg.Any<string>()).Returns(2000m);
-        employeeRepo.GetHoursWorked(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(200);
+        [SetUp]
+        public void Setup()
+        {
+            _employeeRepo = Substitute.For<IEmployeeRepo>();
+            _employeeSalaryCalculator = new EmployeeSalaryCalculator(_employeeRepo);
+            _employeeRepo.GetEmployeeBonus(Arg.Any<string>(), Arg.Any<string>()).Returns(2000m);
+            _employeeRepo.GetHoursWorked(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(200);
+        }
 
-        var calculateSalary = employeeSalaryCalculator.CalculateSalary("Full-time", "1", 1, 2022, 0.2m, 2m);
+        [TestCase("Full-time", 5440)]
+        [TestCase("Intern", 5200)]
+        [TestCase("Part-time", 6400)]
+        [TestCase("Contractor", 13600)]
+        public void CalculateSalary_ShouldReturnCorrectSalary_ForDifferentEmployeeTypes(string employeeType, decimal expectedSalary)
+        {
+            var calculateSalary = _employeeSalaryCalculator.CalculateSalary(employeeType, "1", 1, 2022, 0.2m, 2m);
+            Assert.AreEqual(expectedSalary, calculateSalary);
+        }
 
-        Assert.AreEqual(5440, calculateSalary);
-    }
-
-    [Test]
-    public void Intern_salary()
-    {
-        var employeeRepo = NSubstitute.Substitute.For<IEmployeeRepo>();
-
-        var employeeSalaryCalculator = new EmployeeSalaryCalculator(employeeRepo);
-        employeeRepo.GetEmployeeBonus(Arg.Any<string>(), Arg.Any<string>()).Returns(2000m);
-        employeeRepo.GetHoursWorked(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(200);
-
-        var calculateSalary = employeeSalaryCalculator.CalculateSalary("Intern", "1", 1, 2022, 0.2m, 2m);
-
-        Assert.AreEqual(5200, calculateSalary);
-    }
-
-    [Test]
-    public void Part_time_salary()
-    {
-        var employeeRepo = NSubstitute.Substitute.For<IEmployeeRepo>();
-
-        var employeeSalaryCalculator = new EmployeeSalaryCalculator(employeeRepo);
-        employeeRepo.GetEmployeeBonus(Arg.Any<string>(), Arg.Any<string>()).Returns(2000m);
-        employeeRepo.GetHoursWorked(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(200);
-
-        var calculateSalary = employeeSalaryCalculator.CalculateSalary("Part-time", "1", 1, 2022, 0.2m, 2m);
-
-        Assert.AreEqual(6400, calculateSalary);
-    }
-
-    [Test]
-    public void Contractor_salary()
-    {
-        var employeeRepo = NSubstitute.Substitute.For<IEmployeeRepo>();
-
-        var employeeSalaryCalculator = new EmployeeSalaryCalculator(employeeRepo);
-        employeeRepo.GetEmployeeBonus(Arg.Any<string>(), Arg.Any<string>()).Returns(2000m);
-        employeeRepo.GetHoursWorked(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(200);
-
-        var calculateSalary = employeeSalaryCalculator.CalculateSalary("Contractor", "1", 1, 2022, 0.2m, 2m);
-
-        Assert.AreEqual(13600, calculateSalary);
-    }
-
-    [Test]
-    public void unknown_employee_salary()
-    {
-        var employeeRepo = NSubstitute.Substitute.For<IEmployeeRepo>();
-
-        var employeeSalaryCalculator = new EmployeeSalaryCalculator(employeeRepo);
-        employeeRepo.GetEmployeeBonus(Arg.Any<string>(), Arg.Any<string>()).Returns(2000m);
-        employeeRepo.GetHoursWorked(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(200);
-
-        Assert.Throws<NotSupportedException>(() => employeeSalaryCalculator.CalculateSalary("Bear", "1", 1, 2022, 0.2m, 2m));
+        [Test]
+        public void CalculateSalary_ShouldThrowNotSupportedException_ForUnknownEmployeeType()
+        {
+            Assert.Throws<NotSupportedException>(() => _employeeSalaryCalculator.CalculateSalary("Bear", "1", 1, 2022, 0.2m, 2m));
+        }
     }
 }

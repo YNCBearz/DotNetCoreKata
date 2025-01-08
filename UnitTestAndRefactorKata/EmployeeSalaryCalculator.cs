@@ -47,15 +47,15 @@ public class EmployeeSalaryCalculator
     }
 
     public decimal CalculateSalary(
-        string employeeType, 
-        string employeeId, 
-        int month, 
-        int year, 
+        string employeeType,
+        string employeeId,
+        int month,
+        int year,
         decimal taxRate = 0.1m,
-        decimal overtimeRate = 1.5m 
+        decimal overtimeRate = 1.5m
     )
     {
-        var bonus = _employeeRepo.GetEmployeeBonus(employeeId, employeeType);   // Feature Envy：調用外部類別
+        var bonus = _employeeRepo.GetEmployeeBonus(employeeId, employeeType); // Feature Envy：調用外部類別
         decimal baseSalary = 0;
         // this is our dependency
         var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year);
@@ -64,31 +64,31 @@ public class EmployeeSalaryCalculator
         switch (employeeType)
         {
             case "Full-time":
-                baseSalary = 3200; 
+                baseSalary = 3200;
                 break;
             case "Part-time":
-                baseSalary = hoursWorked * 20; 
+                baseSalary = hoursWorked * 20;
                 break;
             case "Intern":
-                baseSalary = hoursWorked * 15; 
+                baseSalary = hoursWorked * 15;
                 break;
             case "Contractor":
-                baseSalary = hoursWorked * 50; 
+                baseSalary = hoursWorked * 50;
                 break;
             default:
                 throw new NotSupportedException("Unknown employee type");
         }
 
-        
         decimal overtimeSalary = 0;
-        if (hoursWorked > 160) 
+
+        if (hoursWorked > 160)
         {
-            var overtimeHours = hoursWorked - 160; 
-            overtimeSalary = overtimeHours * (baseSalary / 160) * overtimeRate; 
+            var overtimeHours = hoursWorked - 160;
+            overtimeSalary = overtimeHours * (baseSalary / 160) * overtimeRate;
         }
 
         var grossSalary = baseSalary + bonus + overtimeSalary;
-        var tax = grossSalary * taxRate; 
+        var tax = grossSalary * taxRate;
         var netSalary = grossSalary - tax;
 
         return netSalary;

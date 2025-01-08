@@ -91,6 +91,7 @@ public class Rate
 public class EmployeeSalaryCalculator
 {
     private readonly IEmployeeRepo _employeeRepo;
+    private static int BaseWorkHour;
 
     public EmployeeSalaryCalculator(IEmployeeRepo employeeRepo)
     {
@@ -121,18 +122,26 @@ public class EmployeeSalaryCalculator
 
         baseSalary = employee.GetBaseSalary();
 
-        decimal overtimeSalary = 0;
-
-        if (employee.HoursWorked > 160)
-        {
-            var overtimeHours = employee.HoursWorked - 160;
-            overtimeSalary = overtimeHours * (baseSalary / 160) * rate.OvertimeRate;
-        }
+        var overtimeSalary = GetOvertimeSalary(employee, rate, baseSalary);
 
         var grossSalary = baseSalary + employee.Bonus + overtimeSalary;
         var tax = grossSalary * rate.TaxRate;
         var netSalary = grossSalary - tax;
 
         return netSalary;
+    }
+
+    private static decimal GetOvertimeSalary(Employee employee, Rate rate, decimal baseSalary)
+    {
+        BaseWorkHour = 160;
+
+        if (employee.HoursWorked > BaseWorkHour)
+        {
+            var overtimeHours = employee.HoursWorked - BaseWorkHour;
+            var overtimeSalary = overtimeHours * (baseSalary / BaseWorkHour) * rate.OvertimeRate;
+            return overtimeSalary;
+        }
+
+        return 0;
     }
 }

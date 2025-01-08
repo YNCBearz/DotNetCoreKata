@@ -7,7 +7,13 @@
 // PrimitiveObsession
 // SwitchCase
 
-public class EmployeeRepo
+public interface IEmployeeRepo
+{
+    int GetHoursWorked(string employeeId, int month, int year);
+    decimal GetEmployeeBonus(string employeeId, string employeeType);
+}
+
+public class EmployeeRepo : IEmployeeRepo
 {
     public int GetHoursWorked(string employeeId, int month, int year)
     {
@@ -33,7 +39,12 @@ public class EmployeeRepo
 
 public class EmployeeSalaryCalculator
 {
-    private readonly EmployeeRepo _employeeRepo = new EmployeeRepo();
+    private readonly IEmployeeRepo _employeeRepo;
+
+    public EmployeeSalaryCalculator(IEmployeeRepo employeeRepo)
+    {
+        _employeeRepo = employeeRepo;
+    }
 
     public decimal CalculateSalary(
         string employeeType, 
@@ -53,7 +64,7 @@ public class EmployeeSalaryCalculator
         switch (employeeType)
         {
             case "Full-time":
-                baseSalary = 3000; 
+                baseSalary = 3200; 
                 break;
             case "Part-time":
                 baseSalary = hoursWorked * 20; 

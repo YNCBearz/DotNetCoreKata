@@ -34,8 +34,10 @@ public class EmployeeSalaryCalculator
 
         if (employeeType == "Full-Time")
         {
-            var employee = new Employee("Full-Time");
-            baseSalary = employee.GetBaseSalary();
+            // var employee = new Employee("Full-Time");
+            var fullEmployee = new FullEmployee();
+            baseSalary = fullEmployee.GetBaseSalary();
+            // baseSalary = employee.GetBaseSalary();
         }
         else
         {
@@ -73,6 +75,16 @@ public class EmployeeSalaryCalculator
         }
 
         return dictionary[employeeType]();
+    }
+}
+
+public class FullEmployee
+{
+    public int baseSalary { get; set; }
+    
+    public int GetBaseSalary()
+    {
+        return 3200;
     }
 }
 

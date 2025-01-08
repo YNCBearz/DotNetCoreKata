@@ -7,6 +7,36 @@
 // PrimitiveObsession
 // SwitchCase
 
+public interface IEmployeeRepo
+{
+    int GetHoursWorked(string employeeId, int month, int year);
+    decimal GetEmployeeBonus(string employeeId, string employeeType);
+}
+
+public class EmployeeRepo : IEmployeeRepo
+{
+    public int GetHoursWorked(string employeeId, int month, int year)
+    {
+        // 模擬從資料庫獲取數據
+        Console.WriteLine($"Fetching work hours for EmployeeId: {employeeId}, Month: {month}, Year: {year}");
+        return (int)(DateTime.Now - new DateTime(year, month, 1)).TotalHours;
+    }
+
+    public decimal GetEmployeeBonus(string employeeId, string employeeType)
+    {
+        // 模擬計算獎金的邏輯
+        if (employeeType == "Full-time")
+        {
+            return 500; // 魔法數字：固定獎金
+        }
+        else if (employeeType == "Part-time")
+        {
+            return 100; // 魔法數字：固定獎金
+        }
+        return 0;
+    }
+}
+
 public class EmployeeSalaryCalculator
 {
     private readonly IEmployeeRepo _employeeRepo;
@@ -31,7 +61,23 @@ public class EmployeeSalaryCalculator
         var hoursWorked = _employeeRepo.GetHoursWorked(employeeId, month, year);
 
         // this is the logic we want to test
-        baseSalary = GetBaseSalary(employeeType, hoursWorked);
+        switch (employeeType)
+        {
+            case "Full-time":
+                baseSalary = 3200;
+                break;
+            case "Part-time":
+                baseSalary = hoursWorked * 20;
+                break;
+            case "Intern":
+                baseSalary = hoursWorked * 15;
+                break;
+            case "Contractor":
+                baseSalary = hoursWorked * 50;
+                break;
+            default:
+                throw new NotSupportedException("Unknown employee type");
+        }
 
         decimal overtimeSalary = 0;
 
@@ -46,23 +92,5 @@ public class EmployeeSalaryCalculator
         var netSalary = grossSalary - tax;
 
         return netSalary;
-    }
-
-    private static decimal GetBaseSalary(string employeeType, int hoursWorked)
-    {
-        var dictionary = new Dictionary<string, Func<int>>()
-        {
-            {"Full-time", () => 3200},
-            {"Part-time", () => hoursWorked * 20},
-            {"Intern", () => hoursWorked * 15},
-            {"Contractor", () => hoursWorked * 50},
-        };
-
-        if (!dictionary.ContainsKey(employeeType))
-        {
-            throw new NotSupportedException("Unknown employee type");
-        }
-
-        return dictionary[employeeType]();
     }
 }

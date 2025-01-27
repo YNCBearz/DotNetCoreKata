@@ -1,4 +1,4 @@
-﻿using DotNetCoreKata.ApiControllers;
+using DotNetCoreKata.ApiControllers;
 using DotNetCoreKata.DomainModels.Starbucks;
 using DotNetCoreKata.Enums;
 using FluentAssertions;

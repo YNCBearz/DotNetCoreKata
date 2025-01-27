@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DotNetCoreKata.ApiControllers;
 
 [Route("api/starbucks")]
-public class StarbucksController: ControllerBase
+public class StarbucksController : ControllerBase
 {
     [HttpGet("menus")]
     public IActionResult? GetMenu()

@@ -1,5 +1,5 @@
+using DotNetCoreKata.Attributes;
 using DotNetCoreKata.Services.AgeOfEmpires;
-using DotNetCoreKata.Tests.UnitTests.Attributes;
 using Serilog;
 using Serilog.Events;
 

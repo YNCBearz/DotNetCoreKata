@@ -1,10 +1,17 @@
-﻿using DotNetCoreKata.ApiControllers;
+using DotNetCoreKata.ApiControllers;
 
-namespace DotNetCoreKata.Tests.UnitTests.Attributes;
+namespace DotNetCoreKata.Attributes;
 
-public class GlobalExceptionHandler(RequestDelegate next, ILogger<GlobalExceptionHandler> logger)
+public class GlobalExceptionHandler : IMiddleware
 {
-    public async Task Invoke(HttpContext context)
+    private readonly ILogger<GlobalExceptionHandler> _logger;
+
+    public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
+    {
+        _logger = logger;
+    }
+
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         try
         {
@@ -19,8 +26,8 @@ public class GlobalExceptionHandler(RequestDelegate next, ILogger<GlobalExceptio
         }
         catch (Exception exception)
         {
-            logger.LogError(exception, nameof(GlobalExceptionHandler));
-            
+            _logger.LogError(exception, nameof(GlobalExceptionHandler));
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 

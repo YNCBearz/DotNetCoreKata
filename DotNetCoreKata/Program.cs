@@ -26,6 +26,7 @@ builder.Services.AddControllers();
 
 // Swagger Gen
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<GlobalExceptionHandler>();
 
 // Dependency Injection
 builder.Services.AddTransient<IClient, Client>();

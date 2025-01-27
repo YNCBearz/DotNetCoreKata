@@ -1,5 +1,3 @@
-using DotNetCoreKata.ApiControllers;
-
 namespace DotNetCoreKata.Attributes;
 
 public class GlobalExceptionHandler : IMiddleware

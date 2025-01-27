@@ -1,4 +1,4 @@
-﻿using DotNetCoreKata.Services.Interview;
+using DotNetCoreKata.Services.Interview;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -23,7 +23,7 @@ public class QuestionTests
         var result = _sut.IsPowerOfTwo(input);
         result.Should().BeTrue();
     }
-    
+
     [TestCase(0)]
     [TestCase(3)]
     [TestCase(5)]

@@ -9,4 +9,6 @@ public class RawRice
 }
 
 public class Rice(RawRice rawRice)
-{ }
+{
+    public RawRice RawRice { get; } = rawRice;
+}

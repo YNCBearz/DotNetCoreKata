@@ -32,4 +32,13 @@ public class QuestionTests
         var result = _sut.IsPowerOfTwo(input);
         result.Should().BeFalse();
     }
+
+    [TestCase(1, 1)]
+    [TestCase(12, 3)]
+    [TestCase(56, 2)]
+    public void single_digit(int input, int expected)
+    {
+        var result = _sut.SingleDigit(input);
+        result.Should().Be(expected);
+    }
 }

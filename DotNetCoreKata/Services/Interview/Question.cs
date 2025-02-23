@@ -14,4 +14,23 @@ public class Question
         var numberToTwo = Convert.ToString(input, 2);
         return numberToTwo.Count(x => x == '1') == 1;
     }
+
+    public int SingleDigit(int i)
+    {
+        var sum = 0;
+        while (i.ToString().Length > 1)
+        {
+            var array = i.ToString().ToArray();
+
+            foreach (var element in array)
+            {
+                sum += int.Parse(element.ToString());
+            }
+
+            i = sum;
+            sum = 0;
+        }
+
+        return i;
+    }
 }

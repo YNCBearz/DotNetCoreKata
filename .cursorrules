@@ -5,10 +5,7 @@
   ## Code Style and Structure
   - Write concise, idiomatic C# code with accurate examples.
   - Follow .NET and ASP.NET Core conventions and best practices.
-  - Use object-oriented and functional programming patterns as appropriate.
   - Prefer LINQ and lambda expressions for collection operations.
-  - Use descriptive variable and method names (e.g., 'IsUserSignedIn', 'CalculateTotal').
-  - Structure files according to .NET conventions (Controllers, Models, Services, etc.).
 
   ## Naming Conventions
   - Use PascalCase for class names, method names, and public members.
@@ -64,4 +61,4 @@
   Follow the official Microsoft documentation and ASP.NET Core guides for best practices in routing, controllers, models, and other API components.
 
   ## Cursor Response Format
-  - Use Tradionnal Chinese for your answers.
+  - Use Traditional Chinese for your answers.

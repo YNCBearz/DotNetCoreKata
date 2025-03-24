@@ -2,7 +2,7 @@
 
 public class Question
 {
-    public bool IsPowerOfTwo(int input)
+    public static bool IsPowerOfTwo(int input)
     {
         // if (input <= 0)
         // {
@@ -15,7 +15,7 @@ public class Question
         return numberToTwo.Count(x => x == '1') == 1;
     }
 
-    public int SingleDigit(int i)
+    public static int SingleDigit(int i)
     {
         var sum = 0;
         while (i.ToString().Length > 1)

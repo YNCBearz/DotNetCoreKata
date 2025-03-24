@@ -20,7 +20,7 @@ public class QuestionTests
     [TestCase(8)]
     public void power_of_two(int input)
     {
-        var result = _sut.IsPowerOfTwo(input);
+        var result = Question.IsPowerOfTwo(input);
         result.Should().BeTrue();
     }
 
@@ -29,7 +29,7 @@ public class QuestionTests
     [TestCase(5)]
     public void not_power_of_two(int input)
     {
-        var result = _sut.IsPowerOfTwo(input);
+        var result = Question.IsPowerOfTwo(input);
         result.Should().BeFalse();
     }
 
@@ -38,7 +38,7 @@ public class QuestionTests
     [TestCase(56, 2)]
     public void single_digit(int input, int expected)
     {
-        var result = _sut.SingleDigit(input);
+        var result = Question.SingleDigit(input);
         result.Should().Be(expected);
     }
 }

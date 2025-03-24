@@ -33,4 +33,20 @@ public class Question
 
         return i;
     }
+
+    public static bool IsClosure(HashSet<int> set, Func<int, int, int> operation)
+    {
+        foreach (var a in set)
+        {
+            foreach (var b in set)
+            {
+                if (!set.Contains(operation(a, b)))
+                {
+                    return false;
+                }
+            } 
+        }
+
+        return true;
+    }
 }

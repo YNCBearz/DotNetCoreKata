@@ -41,4 +41,37 @@ public class QuestionTests
         var result = Question.SingleDigit(input);
         result.Should().Be(expected);
     }
+    
+    [Test]
+    public void is_closure()
+    {
+        var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+        var result = Question.IsClosure(set, AddAndSubtractTenIfMoreThanTen);
+        result.Should().BeTrue();
+    }
+
+    private static int AddAndSubtractTenIfMoreThanTen(int a, int b)
+    {
+        var result = a + b;
+
+        if (result >= 10)
+        {
+            return result - 10;
+        }
+
+        return result;
+    }
+
+
+    [Test]
+    public void is_not_closure()
+    {
+        var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+        var result = Question.IsClosure(set, AddAndSubtractTen);
+        result.Should().BeFalse();
+    }
+    private static int AddAndSubtractTen(int a, int b) => (a + b) - 10;
+
 }

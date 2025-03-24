@@ -6,14 +6,6 @@ namespace DotNetCoreKata.Tests.UnitTests.Services.Interview;
 
 public class QuestionTests
 {
-    private Question _sut = null!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _sut = new Question();
-    }
-
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(4)]
@@ -41,19 +33,27 @@ public class QuestionTests
         var result = Question.SingleDigit(input);
         result.Should().Be(expected);
     }
-    
+
     [Test]
     public void is_closure()
     {
-        var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        // var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        // var result = Question.IsClosure(set, AddAndSubtractTenIfMoreThanTen);
 
-        var result = Question.IsClosure(set, AddAndSubtractTenIfMoreThanTen);
+        var set = new HashSet<int> {0};
+        var result = Question.IsClosure(set, Add);
+
         result.Should().BeTrue();
+    }
+
+    private static int Add(int a, int b)
+    {
+        return a + b;
     }
 
     private static int AddAndSubtractTenIfMoreThanTen(int a, int b)
     {
-        var result = a + b;
+        var result = Add(a, b);
 
         if (result >= 10)
         {
@@ -63,7 +63,6 @@ public class QuestionTests
         return result;
     }
 
-
     [Test]
     public void is_not_closure()
     {
@@ -72,6 +71,6 @@ public class QuestionTests
         var result = Question.IsClosure(set, AddAndSubtractTen);
         result.Should().BeFalse();
     }
-    private static int AddAndSubtractTen(int a, int b) => (a + b) - 10;
 
+    private static int AddAndSubtractTen(int a, int b) => Add(a, b) - 10;
 }

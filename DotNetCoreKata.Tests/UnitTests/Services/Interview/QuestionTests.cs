@@ -34,20 +34,22 @@ public class QuestionTests
         result.Should().Be(expected);
     }
 
-    [Test]
-    public void is_closure()
+    [TestCase(new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, nameof(AddAndSubtractTenIfMoreThanTen))]
+    [TestCase(new[] {0}, nameof(Add))]
+    public void is_closure(int[] setArray, string operationName)
     {
-        // case 1
-        var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        var result = Question.IsClosure(set, AddAndSubtractTenIfMoreThanTen);
+        var set = new HashSet<int>(setArray);
+
+        Func<int, int, int> operation = operationName switch
+        {
+            nameof(Add) => Add,
+            nameof(AddAndSubtractTenIfMoreThanTen) => AddAndSubtractTenIfMoreThanTen,
+            _ => throw new ArgumentException("Invalid operation name", nameof(operationName))
+        };
+
+        var result = Question.IsClosure(set, operation);
 
         result.Should().BeTrue();
-
-        // case 2
-        var set2 = new HashSet<int> {0};
-        var result2 = Question.IsClosure(set2, Add);
-
-        result2.Should().BeTrue();
     }
 
     private static int Add(int a, int b)

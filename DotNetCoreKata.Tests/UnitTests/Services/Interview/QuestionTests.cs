@@ -1,3 +1,4 @@
+using DotNetCoreKata.Models;
 using DotNetCoreKata.Services.Interview;
 using FluentAssertions;
 using NUnit.Framework;
@@ -52,6 +53,30 @@ public class QuestionTests
         result.Should().BeTrue();
     }
 
+    [Test]
+    public void is_not_closure()
+    {
+        var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+        var result = Question.IsClosure(set, AddAndSubtractTen);
+        result.Should().BeFalse();
+    }
+
+    [Test]
+    public void buy_100_chicken_with_budget_100()
+    {
+        var expectedResults = new List<BuyChickenAnswer>
+        {
+            new BuyChickenAnswer(0, 25, 75),
+            new BuyChickenAnswer(4, 18, 78),
+            new BuyChickenAnswer(8, 11, 81),
+            new BuyChickenAnswer(12, 4, 84)
+        };
+
+        var result = new Question().BuyChicken();
+        result.Should().BeEquivalentTo(expectedResults);
+    }
+
     private static int Add(int a, int b)
     {
         return a + b;
@@ -67,15 +92,6 @@ public class QuestionTests
         }
 
         return result;
-    }
-
-    [Test]
-    public void is_not_closure()
-    {
-        var set = new HashSet<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-        var result = Question.IsClosure(set, AddAndSubtractTen);
-        result.Should().BeFalse();
     }
 
     private static int AddAndSubtractTen(int a, int b) => Add(a, b) - 10;

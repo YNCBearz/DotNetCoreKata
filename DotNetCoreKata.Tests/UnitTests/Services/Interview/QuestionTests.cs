@@ -73,7 +73,20 @@ public class QuestionTests
             new BuyChickenAnswer(12, 4, 84)
         };
 
-        var result = new Question().BuyChicken();
+        var result = Question.BuyChicken();
+        result.Should().BeEquivalentTo(expectedResults);
+    }
+    
+    // This test is for the introduction to the problem (no rooster)
+    [Test]
+    public void buy_100_chicken_with_budget_100_intro()
+    {
+        var expectedResults = new List<BuyChickenAnswer>
+        {
+            new BuyChickenAnswer(0, 25, 75),
+        };
+
+        var result = Question.BuyChickenIntro();
         result.Should().BeEquivalentTo(expectedResults);
     }
 

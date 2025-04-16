@@ -53,7 +53,7 @@ public class Question
         return true;
     }
 
-    public List<BuyChickenAnswer> BuyChicken()
+    public static List<BuyChickenAnswer> BuyChicken()
     {
         const int budget = 100;
         var result = new List<BuyChickenAnswer>();
@@ -80,6 +80,34 @@ public class Question
                 {
                     result.Add(new BuyChickenAnswer(roasterCount, henCount, chickCount));
                 }
+            }
+        }
+
+        return result;
+    }
+
+    public static List<BuyChickenAnswer> BuyChickenIntro()
+    {
+        var result = new List<BuyChickenAnswer>();
+
+        // x = hens count
+        // 3y = chickens count
+        // x+3y = 100, 3x + y = 100
+
+        for (var henCount = 0; henCount <= 100; henCount++)
+        {
+            var chickCount = 100 - henCount;
+
+            if (chickCount % 3 != 0)
+            {
+                continue;
+            }
+
+            var price = henCount * 3 + chickCount * 1 / 3;
+
+            if (price == 100)
+            {
+                result.Add(new BuyChickenAnswer(0, henCount, chickCount));
             }
         }
 

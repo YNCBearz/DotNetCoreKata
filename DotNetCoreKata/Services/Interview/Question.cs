@@ -53,28 +53,27 @@ public class Question
         return true;
     }
 
-    public static List<BuyChickenAnswer> BuyChicken()
+    public static List<BuyChickenAnswer> BuyChicken(int budget, int totalCount)
     {
-        const int budget = 100;
         var result = new List<BuyChickenAnswer>();
 
-        for (var roasterCount = 20; roasterCount >= 0; roasterCount--)
+        for (var roasterCount = 0; roasterCount <= 20; roasterCount++)
         {
-            for (var henCount = 33; henCount >= 0; henCount--)
+            for (var henCount = 0; henCount <= 33; henCount++)
             {
-                if (roasterCount + henCount > 100 || roasterCount * 5 + henCount * 3 > 100)
+                if (roasterCount + henCount > totalCount || roasterCount * 5 + henCount * 3 > budget)
                 {
                     continue;
                 }
-                
-                var chickCount = 100 - roasterCount - henCount;
+
+                var chickCount = totalCount - roasterCount - henCount;
 
                 if (chickCount % 3 != 0)
                 {
                     continue;
                 }
 
-                var price = roasterCount * 5 + henCount * 3 + chickCount * 1/3;
+                var price = roasterCount * 5 + henCount * 3 + chickCount * 1 / 3;
 
                 if (price == budget)
                 {

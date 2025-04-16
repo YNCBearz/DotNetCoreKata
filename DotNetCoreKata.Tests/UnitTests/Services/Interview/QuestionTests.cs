@@ -62,8 +62,8 @@ public class QuestionTests
         result.Should().BeFalse();
     }
 
-    [TestCase(100, 100)]
-    public void buy_chicken_with_budget(int budget, int totalCount)
+    [Test]
+    public void buy_100_chicken_with_budget_100()
     {
         var expectedResults = new List<BuyChickenAnswer>
         {
@@ -73,7 +73,7 @@ public class QuestionTests
             new BuyChickenAnswer(12, 4, 84)
         };
 
-        var result = Question.BuyChicken(budget, totalCount);
+        var result = Question.BuyChicken();
         result.Should().BeEquivalentTo(expectedResults);
     }
     
